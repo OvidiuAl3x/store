@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export const useStyles = makeStyles(() => ({
   recipeCardContainer: {
@@ -16,6 +17,7 @@ export const useStyles = makeStyles(() => ({
     minHeight: "290px",
     borderRadius: "12px",
     boxShadow: "0px 3px 10px 5px rgba(72, 207, 174, 0.5)",
+    background: "#0e0e10",
   },
 
   rating: {
@@ -33,26 +35,43 @@ export const useStyles = makeStyles(() => ({
     fontWeight: "bold",
     fontSize: "18px",
     textTransform: "uppercase",
+    color: "#48cfae",
   },
+
+  description: {
+    minHeight: "70px",
+  },
+
   buttonContainer: {
     display: "flex",
     justifyContent: "space-between",
+    margin: "auto",
   },
-  button: {
+
+  price: {
+    margin: "20px 15px",
+    color: "#48cfae",
+    paddingTop: "5px",
+  },
+
+  buttonCart: {
     backgroundColor: "#0e0e10",
     margin: "20px 15px",
     color: "#48cfae",
     "&:hover": {
-      backgroundColor: "#48cfae",
-      color: "#0e0e10",
+      backgroundColor: "#0e0e10",
     },
   },
 }));
 
-export const ProductCard = ({ product }) => {
+export const ProductCard = ({ product, cartCounter, setCartCounter }) => {
   const classes = useStyles();
+  const { title, price, rating, thumbnail, id } = product;
 
-  const { title, description, price, rating, thumbnail, id } = product;
+  const cartCounterFunction = () => {
+    setCartCounter(cartCounter + 1);
+    console.log(cartCounter);
+  };
 
   return (
     <Grid key={id} container item xs={12} sm={6} md={4}>
@@ -61,7 +80,9 @@ export const ProductCard = ({ product }) => {
         className={classes.recipeCardContainer}
       >
         <Grid>
-          <Grid style={{ marginTop: "-40px" }}>
+          <Grid
+            style={{ marginTop: "-40px", borderBottom: "1px solid #48cfae" }}
+          >
             <Button className={classes.rating}>
               <StarRateIcon style={{ fontSize: "18px", paddingRight: "2px" }} />
               {rating}
@@ -79,14 +100,15 @@ export const ProductCard = ({ product }) => {
             <Typography gutterBottom className={classes.productName}>
               {title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <strong>Price:</strong> $ {price}
-            </Typography>
           </CardContent>
         </Grid>
         <Grid className={classes.buttonContainer}>
-          <Button className={classes.button}>View Product</Button>
-          <Button className={classes.button}>Add to Cart</Button>
+          <Typography className={classes.price}>
+            <strong>Price:</strong> $ {price}
+          </Typography>
+          <Button className={classes.buttonCart} onClick={cartCounterFunction}>
+            <AddShoppingCartIcon />
+          </Button>
         </Grid>
       </Card>
     </Grid>
