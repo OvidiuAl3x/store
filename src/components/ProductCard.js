@@ -12,66 +12,56 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export const useStyles = makeStyles(() => ({
   recipeCardContainer: {
-    margin: "30px auto",
+    margin: "30px auto!important",
     width: "370px",
     minHeight: "290px",
-    borderRadius: "12px",
-    boxShadow: "0px 3px 10px 5px rgba(72, 207, 174, 0.5)",
-    background: "#0e0e10",
+    borderRadius: "12px!important",
+    boxShadow: "0px 3px 10px 5px rgba(72, 207, 174, 0.5)!important",
+    background: "#0e0e10 !important",
   },
 
   rating: {
     top: "50px",
     left: "10px",
-    color: "#48cfae",
-    backgroundColor: "#0e0e10",
-    cursor: "auto",
+    color: "#48cfae !important",
+    backgroundColor: "#0e0e10 !important",
+    cursor: "auto!important",
     "&:hover": {
-      backgroundColor: "#0e0e10",
+      backgroundColor: "#0e0e10!important",
     },
   },
 
   productName: {
-    fontWeight: "bold",
-    fontSize: "18px",
+    fontWeight: "bold!important",
+    fontSize: "18px !important",
     textTransform: "uppercase",
     color: "#48cfae",
   },
 
-  description: {
-    minHeight: "70px",
-  },
-
   buttonContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    margin: "auto",
+    display: "flex!important",
+    justifyContent: "space-between!important",
+    margin: "auto!important",
   },
 
   price: {
-    margin: "20px 15px",
+    margin: "20px 15px!important",
     color: "#48cfae",
     paddingTop: "5px",
   },
 
   buttonCart: {
-    backgroundColor: "#0e0e10",
-    margin: "20px 15px",
-    color: "#48cfae",
+    margin: "20px 15px!important",
+    color: "#48cfae!important",
     "&:hover": {
-      backgroundColor: "#0e0e10",
+      backgroundColor: "#0e0e10!important",
     },
   },
 }));
 
-export const ProductCard = ({ product, cartCounter, setCartCounter }) => {
+export const ProductCard = ({ product, addToCart }) => {
   const classes = useStyles();
   const { title, price, rating, thumbnail, id } = product;
-
-  const cartCounterFunction = () => {
-    setCartCounter(cartCounter + 1);
-    console.log(cartCounter);
-  };
 
   return (
     <Grid key={id} container item xs={12} sm={6} md={4}>
@@ -106,7 +96,10 @@ export const ProductCard = ({ product, cartCounter, setCartCounter }) => {
           <Typography className={classes.price}>
             <strong>Price:</strong> $ {price}
           </Typography>
-          <Button className={classes.buttonCart} onClick={cartCounterFunction}>
+          <Button
+            className={classes.buttonCart}
+            onClick={() => addToCart(product)}
+          >
             <AddShoppingCartIcon />
           </Button>
         </Grid>
