@@ -10,10 +10,11 @@ export const useStyles = makeStyles(() => ({
   cartContainer: {
     display: "flex",
     justifyItems: "center",
-    color: "#48cfae",
+    color:
+      "linear-gradient(130deg, rgba(75,73,220,1) 1%, rgba(2,0,36,1) 53%, rgba(75,73,220,1) 100%)",
     width: "100%",
     marginTop: "30px!important",
-    borderBottom: "7px solid #48cfae",
+    borderBottom: "7px solid black",
   },
   cartText: {
     fontSize: "30px!important",
@@ -45,12 +46,20 @@ export const Products = () => {
   }, []);
 
   const addToCart = (product) => {
-    setCart([...cart, { ...product }]);
+    let newCart = [...cart];
+    let itemInCart = newCart.find((item) => product.title === item.title);
+
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = { ...product, quantity: 1 };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
   };
 
-  const removeFromCart = (productToRemove) => {
-    setCart(cart.filter((product) => product !== productToRemove));
-    console.log("delete");
+  const getTotalSum = () => {
+    return cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   };
 
   const renderProduts = () => (
@@ -71,18 +80,12 @@ export const Products = () => {
       <Grid className={classes.cartContainer}>
         <Typography className={classes.cartText}>Cart</Typography>
         <Typography className={classes.cartCost}>
-          Total Cost: $ 202020
+          Total Cost: $ {getTotalSum()}
         </Typography>
       </Grid>
 
       {cart?.map((item, id) => (
-        <Cart
-          key={id}
-          product={item}
-          setCart={setCart}
-          cart={cart}
-          removeFromCart={removeFromCart}
-        />
+        <Cart key={id} product={item} setCart={setCart} cart={cart} />
       ))}
     </>
   );

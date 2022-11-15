@@ -8,7 +8,8 @@ export const ProductsApi = () => {
 };
 
 export const ProductId = (id) => {
-  return axios.get(`https://dummyjson.com/products/${id}`)
-  .then((res => res.data))
-  .catch(e => console.warn(e))
+  return axios
+    .get(`https://dummyjson.com/products/${id}`)
+    .then((res) => res.data)
+    .catch((e) => console.warn(e));
 };

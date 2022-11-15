@@ -16,18 +16,19 @@ export const useStyles = makeStyles(() => ({
     width: "370px",
     minHeight: "290px",
     borderRadius: "12px!important",
-    boxShadow: "0px 3px 10px 5px rgba(72, 207, 174, 0.5)!important",
-    background: "#0e0e10 !important",
+    boxShadow: "0px 3px 10px 5px rgba(0,0,0, 0.5)!important",
+    background:
+      "linear-gradient(130deg, rgba(2,0,36,1) 10%, rgba(75,73,220,1) 80%, rgba(75,73,220,1) 100%)",
   },
 
   rating: {
     top: "50px",
     left: "10px",
-    color: "#48cfae !important",
-    backgroundColor: "#0e0e10 !important",
+    color: "white !important",
+    backgroundColor: "#4b49dc !important",
     cursor: "auto!important",
     "&:hover": {
-      backgroundColor: "#0e0e10!important",
+      backgroundColor: "#4b49dc!important",
     },
   },
 
@@ -35,7 +36,7 @@ export const useStyles = makeStyles(() => ({
     fontWeight: "bold!important",
     fontSize: "18px !important",
     textTransform: "uppercase",
-    color: "#48cfae",
+    color: "white",
   },
 
   buttonContainer: {
@@ -46,15 +47,18 @@ export const useStyles = makeStyles(() => ({
 
   price: {
     margin: "20px 15px!important",
-    color: "#48cfae",
+    color: "white",
     paddingTop: "5px",
   },
 
   buttonCart: {
     margin: "20px 15px!important",
-    color: "#48cfae!important",
+    color: "white!important",
+    background:
+      "linear-gradient(130deg, rgba(75,73,220,1) 1%, rgba(2,0,36,1) 53%, rgba(75,73,220,1) 100%)",
     "&:hover": {
-      backgroundColor: "#0e0e10!important",
+      background:
+        "linear-gradient(130deg, rgba(75,73,220,1) 1%, rgba(2,0,36,1) 53%, rgba(75,73,220,1) 100%)",
     },
   },
 }));
@@ -71,7 +75,7 @@ export const ProductCard = ({ product, addToCart }) => {
       >
         <Grid>
           <Grid
-            style={{ marginTop: "-40px", borderBottom: "1px solid #48cfae" }}
+            style={{ marginTop: "-40px"}}
           >
             <Button className={classes.rating}>
               <StarRateIcon style={{ fontSize: "18px", paddingRight: "2px" }} />

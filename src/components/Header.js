@@ -7,21 +7,23 @@ export const useStyles = makeStyles(() => ({
   navBarContainer: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#48cfae",
+    background:
+      "linear-gradient(130deg, rgba(2,0,36,1) 10%, rgba(75,73,220,1) 80%, rgba(75,73,220,1) 100%)",
   },
   logo: {
     fontSize: "25px !important",
     marginLeft: "20px !important",
     cursor: "pointer",
+    color: "white",
   },
   home: {
     marginRight: "auto !important",
     marginLeft: "100px !important",
     fontSize: "18px!important",
-    fontWeight:"600!important",
+    fontWeight: "600!important",
     cursor: "pointer",
     textDecoration: "none",
-    color: "#0e0e10",
+    color: "white",
   },
   cartContainer: {
     display: "flex !important",
@@ -31,18 +33,18 @@ export const useStyles = makeStyles(() => ({
   cart: {
     fontSize: "30px !important",
     cursor: "pointer !important",
-    color: "#0e0e10",
+    color: "white",
     textDecoration: "none",
   },
   cartItems: {
     position: "relative",
     right: "15px",
     top: "7px",
-    border: "1px solid #48cfae",
     borderRadius: "50%",
-    backgroundColor: "#0e0e10",
+    background:
+      "linear-gradient(130deg, rgba(75,73,220,1) 1%, rgba(2,0,36,1) 53%, rgba(75,73,220,1) 100%)",
     width: "22px",
-    color: "#48cfae",
+    color: "white",
     textAlign: "center",
     cursor: "pointer",
   },
@@ -50,11 +52,16 @@ export const useStyles = makeStyles(() => ({
     textDecoration: "none!important",
   },
 }));
+
 const Header = ({ cart, PAGE_CART, setPage, PAGE_PRODUCTS }) => {
   const classes = useStyles();
 
   const navigateTo = (nextPage) => {
     setPage(nextPage);
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce((sum, { quantity }) => sum + quantity, 0);
   };
 
   return (
@@ -73,7 +80,13 @@ const Header = ({ cart, PAGE_CART, setPage, PAGE_PRODUCTS }) => {
         onClick={() => navigateTo(PAGE_CART)}
       >
         <ShoppingCartIcon className={classes.cart} />
-        <Typography className={classes.cartItems}>{cart.length}</Typography>
+        {cart.length >= 1 ? (
+          <Typography className={classes.cartItems}>
+            {getCartTotal()}
+          </Typography>
+        ) : (
+          <Typography className={classes.cartItems}></Typography>
+        )}
       </Grid>
     </Grid>
   );

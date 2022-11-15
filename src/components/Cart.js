@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  CardMedia,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { CardMedia, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
@@ -13,7 +9,8 @@ export const useStyles = makeStyles(() => ({
   cartContainer: {
     display: "flex",
     width: "100%",
-    borderBottom: "5px solid #48cfae",
+    background:
+      "linear-gradient(0deg, rgba(2,0,36,1) 10%, rgba(75,73,220,1) 80%, rgba(75,73,220,1) 100%)",
   },
 
   removeContainer: {
@@ -25,10 +22,10 @@ export const useStyles = makeStyles(() => ({
   },
 
   removeProduct: {
-    color: "#48cfae",
+    color: "#d94555",
     cursor: "pointer",
     "&:hover": {
-      color: "#FF1C1C",
+      color: "#d94555",
     },
   },
 
@@ -43,7 +40,7 @@ export const useStyles = makeStyles(() => ({
     fontWeight: "650!important",
     width: "20%",
     textAlign: "center",
-    color: "#48cfae",
+    color: "white",
   },
 
   quantityContainer: {
@@ -51,7 +48,7 @@ export const useStyles = makeStyles(() => ({
     alignItems: "center",
     margin: "0px 50px!important",
     width: "20%",
-    color: "#48cfae",
+    color: "white",
   },
 
   quantity: {
@@ -60,21 +57,41 @@ export const useStyles = makeStyles(() => ({
 
   quantityIcon: {
     cursor: "pointer",
-    border: "2px solid #48cfae",
-    color: "#48cfae",
+    border: "2px solid white",
+    color: "white",
     borderRadius: "50%",
+    background:
+      "linear-gradient(130deg, rgba(75,73,220,1) 1%, rgba(2,0,36,1) 53%, rgba(75,73,220,1) 100%)",
   },
 
   price: {
     display: "flex",
     alignItems: "center",
-    color: "#48cfae",
+    color: "white",
   },
 }));
 
-export const Cart = ({ product, removeFromCart }) => {
+export const Cart = ({ product, cart, setCart }) => {
   const classes = useStyles();
   const { title, price, thumbnail, id } = product;
+
+  const addQuantity = (product) => {
+    const newCart = [...cart];
+    newCart.find((item) => item.title === product.title).quantity++;
+    setCart(newCart);
+  };
+
+  const removeQuantity = (product) => {
+    const newCart = [...cart];
+    newCart.find((item) => item.title === product.title).quantity--;
+    setCart(newCart);
+  };
+
+  const removeFromCart = (productToRemove) => {
+    setCart(cart.filter((product) => product !== productToRemove));
+  };
+
+  const productTotalPrice = price * product.quantity;
 
   return (
     <Grid container key={id}>
@@ -95,12 +112,24 @@ export const Cart = ({ product, removeFromCart }) => {
         />
         <Typography className={classes.title}>{title}</Typography>
         <Grid className={classes.quantityContainer}>
-          <RemoveIcon className={classes.quantityIcon} />
-          <Typography className={classes.quantity}>Quantity</Typography>
-          <AddIcon className={classes.quantityIcon} />
+          <RemoveIcon
+            className={classes.quantityIcon}
+            onClick={() =>
+              product.quantity > 1
+                ? removeQuantity(product)
+                : removeFromCart(product)
+            }
+          />
+          <Typography className={classes.quantity}>
+            {product.quantity}
+          </Typography>
+          <AddIcon
+            className={classes.quantityIcon}
+            onClick={() => addQuantity(product)}
+          />
         </Grid>
 
-        <Typography className={classes.price}>${price}</Typography>
+        <Typography className={classes.price}>${productTotalPrice}</Typography>
       </Grid>
     </Grid>
   );
