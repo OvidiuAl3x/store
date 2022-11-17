@@ -53,7 +53,13 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const Header = ({ cart, PAGE_CART, setPage, PAGE_PRODUCTS }) => {
+const Header = ({
+  cart,
+  PAGE_CART,
+  setPage,
+  PAGE_PRODUCTS,
+  handleMouseOver,
+}) => {
   const classes = useStyles();
 
   const navigateTo = (nextPage) => {
@@ -78,6 +84,7 @@ const Header = ({ cart, PAGE_CART, setPage, PAGE_PRODUCTS }) => {
       <Grid
         className={classes.cartContainer}
         onClick={() => navigateTo(PAGE_CART)}
+        onMouseOver={handleMouseOver}
       >
         <ShoppingCartIcon className={classes.cart} />
         {cart.length >= 1 ? (

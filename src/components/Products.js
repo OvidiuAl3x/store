@@ -5,6 +5,7 @@ import { ProductsApi } from "../service/ApiRequest";
 import Header from "./Header";
 import { ProductCard } from "./ProductCard";
 import { Cart } from "./Cart";
+import { MiniCart } from "./MiniCart";
 
 export const useStyles = makeStyles(() => ({
   cartContainer: {
@@ -26,6 +27,36 @@ export const useStyles = makeStyles(() => ({
     fontSize: "20px!important",
     marginRight: "40px!important",
   },
+  miniCartContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  miniCart: {
+    background:
+      "linear-gradient(130deg, rgba(2,0,36,1) 10%, rgba(75,73,220,1) 80%, rgba(75,73,220,1) 100%)",
+    color: "white",
+    position: "absolute",
+    zIndex: "3",
+    borderRadius: "10px",
+    right: "5px",
+    border: "2px white",
+    width: "100%",
+    maxWidth: "350px",
+  },
+  miniCartText: {
+    padding: "10px",
+  },
+  miniCartCostContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  miniCartTotalProduct: {
+    marginRight: "auto!important",
+    marginLeft: "10px!important",
+  },
+  miniCartCost: {
+    marginRight: "13px!important",
+  },
 }));
 
 const PAGE_PRODUCTS = "products";
@@ -34,9 +65,9 @@ const PAGE_CART = "cart";
 export const Products = () => {
   const classes = useStyles();
   const [products, setProducts] = useState([]);
-
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -48,7 +79,6 @@ export const Products = () => {
   const addToCart = (product) => {
     let newCart = [...cart];
     let itemInCart = newCart.find((item) => product.title === item.title);
-
     if (itemInCart) {
       itemInCart.quantity++;
     } else {
@@ -62,15 +92,14 @@ export const Products = () => {
     return cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   };
 
+  const getTotalProduct = () => {
+    return cart.reduce((sum, { quantity }) => sum + quantity, 0);
+  };
+
   const renderProduts = () => (
     <>
       {products?.map((item) => (
-        <ProductCard
-          key={item.id}
-          product={item}
-          addToCart={addToCart}
-          cart={cart}
-        />
+        <ProductCard key={item.id} product={item} addToCart={addToCart} />
       ))}
     </>
   );
@@ -90,6 +119,14 @@ export const Products = () => {
     </>
   );
 
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
   return (
     <>
       <Header
@@ -99,7 +136,47 @@ export const Products = () => {
         PAGE_CART={PAGE_CART}
         setPage={setPage}
         PAGE_PRODUCTS={PAGE_PRODUCTS}
+        setIsHovering={setIsHovering}
+        handleMouseOver={handleMouseOver}
       />
+      {isHovering && (
+        <Grid
+          className={classes.miniCartContainer}
+          onMouseOut={handleMouseOut}
+          onMouseOver={handleMouseOver}
+        >
+          <Grid className={classes.miniCart}>
+            {getTotalProduct() !== 0 ? (
+              <>
+                <Typography className={classes.miniCartText}>Cart</Typography>
+
+                {cart?.map((item, id) => (
+                  <MiniCart
+                    key={id}
+                    product={item}
+                    setCart={setCart}
+                    cart={cart}
+                    handleMouseOut={handleMouseOut}
+                  />
+                ))}
+                <Grid className={classes.miniCartCostContainer}>
+                  <Typography className={classes.miniCartTotalProduct}>
+                    Total: {getTotalProduct()}
+                    {getTotalProduct() <= 1 ? <> Product</> : <> Products</>}
+                  </Typography>
+                  <Typography className={classes.miniCartCost}>
+                    $ {getTotalSum()}
+                  </Typography>
+                </Grid>
+              </>
+            ) : (
+              <Typography className={classes.miniCartText}>
+                Your Cart is Empty
+              </Typography>
+            )}
+          </Grid>
+        </Grid>
+      )}
       <Grid
         container
         xs={10}
