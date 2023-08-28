@@ -15,7 +15,7 @@ const Products = () => {
         <>
           <h1>{item.title}</h1>
           <h1>{item.price}</h1>
-          <img src={item.image} alt="" />
+          <img src={item.image} alt="" width="200px" />
         </>
       ))}
     </div>
