@@ -22,7 +22,7 @@ const Layout = () => {
   return (
     <>
       <div className="">
-        <div className="bg-[#6E01A9] text-white flex justify-between items-center h-10">
+        <div className="bg-primary text-white flex justify-between items-center h-10">
           <div className="flex mx-[15%] items-center">
             <FaInstagram className={style.media} />
             <FaFacebookF className={style.media} />
@@ -37,13 +37,13 @@ const Layout = () => {
 
         <div className="flex justify-between items-center mt-2">
           <div className="flex items-center mx-[15%]">
-            <FiPhoneCall className="text-3xl mr-2 text-[#6E01A9]" />
+            <FiPhoneCall className="text-3xl mr-2 text-primary" />
             <div>
-              <p className="text-sm text-[#6E01A9]">CALL US</p>
+              <p className="text-sm text-primary">CALL US</p>
               <p className="font-bold text-[14px]">(123) 456 7890</p>
             </div>
           </div>
-          <p className="w-fit text-3xl text-[#6E01A9] font-bold font-serif">
+          <p className="w-fit text-3xl text-primary font-bold font-serif">
             Shop
           </p>
 
