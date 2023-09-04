@@ -26,20 +26,21 @@ const Home = () => {
         style={{ backgroundImage: `url(${bgImage})` }}
         className="bg-center bg-no-repeat flex items-start flex-col justify-center -mt-[30px] h-[60vh]"
       >
-        <div className="ml-[10%] backdrop-blur-sm">
-          <p className="font-bold text-[5em] text-primary">new </p>
-          <p className="font-bold text-[5em] mt-[-0.6em] text-primary">
+        <div className="ml-4 md:ml-[10%] backdrop-blur-sm">
+          <p className="font-bold text-[3em] md:text-[5em] text-primary">new</p>
+          <p className="font-bold text-[3em] md:text-[5em] mt-[-0.6em] text-primary">
             collection
           </p>
-          <p className="text-lg">
+          <p className="text-md md:text-lg">
             From t-shirt, jeans, jacket, shirt, watches, bags
           </p>
-          <button className="bg-primary uppercase text-white mt-10 px-8 py-4 font-bold hover:scale-105 duration-150 rounded-xl">
+          <button className="bg-primary uppercase text-white mt-10 px-4 py-2 md:px-8 md:py-4 font-bold hover:scale-105 duration-150 rounded-xl">
             Shop Now
           </button>
         </div>
       </div>
-      <div className="flex items-center justify-evenly shadow-lg shadow-black/20">
+
+      <div className="flex items-center  flex-col md:flex-row justify-evenly shadow-lg shadow-black/20">
         <div className="flex items-center my-4">
           <BsTruck className="text-[3em] text-primary mr-4" />
           <div>
@@ -50,7 +51,7 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <div className="h-[80px] bg-primary w-[1px]"></div>
+        <div className="h-[1px] md:h-[80px] bg-primary w-[80%] md:w-[1px]"></div>
         <div className="flex items-center   my-4">
           <LuPackageOpen className="text-[3em] text-primary mr-4" />
           <div>
@@ -61,7 +62,7 @@ const Home = () => {
             </p>
           </div>
         </div>
-        <div className="h-[80px] bg-primary w-[1px]"></div>
+        <div className="h-[1px] md:h-[80px] bg-primary w-[80%] md:w-[1px]"></div>
 
         <div className="flex items-center  my-4">
           <RiSecurePaymentLine className="text-[3em] text-primary mr-4" />
@@ -74,6 +75,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div className="grid grid-cols-2 gap-4 max-w-[1240px] m-4 lg:mx-auto mt-[8em]">
         <div className="grid grid-cols-2 gap-4 h-[30em] ">
           <div
