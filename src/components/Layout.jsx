@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FaOpencart } from "react-icons/fa";
-import { FiPhoneCall } from "react-icons/fi";
+import { FiPhoneCall, FiMenu } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
 import {
   FaInstagram,
   FaFacebookF,
@@ -9,27 +10,51 @@ import {
   FaYoutube,
   FaRegUser,
   FaRegHeart,
+  FaGamepad,
 } from "react-icons/fa";
-import { BsSearch } from "react-icons/bs";
+import { PiDressFill } from "react-icons/pi";
+import { BsSearch, BsWatch } from "react-icons/bs";
+import { BiSolidTShirt } from "react-icons/bi";
 
 const style = {
-  nav: "m-10 hover:scale-110  duration-300",
+  parent:
+    "mb-10 md:mb-0 fixed z-10 w-full md:relative bg-[#f2f6ff] border-b-[3px] border-primary md:border-b-0",
   media:
     "text-[25px] rounded-full border border-white p-1 m-[3px] cursor-pointer hover:scale-110 duration-300",
+  navBar: "m-10 hover:scale-110  duration-300",
+  navBarParent:
+    "hidden md:flex items-center w-full justify-center uppercase font-serif",
+  mobileNav: "flex items-center border-b-2 border-primary w-full p-4",
+  mobileNavIcon: "mr-2 text-[20px]",
+  mobileNavParent:
+    "absolute bg-[#f2f6ff] w-full px-8 md:hidden z-10  border-b-[3px] border-primary",
 };
 
-// ! Need nav in mobile
-
 const Layout = () => {
+  const {
+    parent,
+    navBar,
+    navBarParent,
+    media,
+    mobileNav,
+    mobileNavIcon,
+    mobileNavParent,
+  } = style;
+  const [nav, setNav] = useState(false);
+
+  const handleClick = () => {
+    setNav(!nav);
+  };
+
   return (
     <>
-      <div className="mb-10 md:mb-0">
-        <div className="bg-primary text-white flex justify-between items-center h-10">
+      <div className={parent}>
+        <div className="bg-primary text-white justify-between items-center h-10 hidden md:flex">
           <div className="flex ml-3 md:mx-[15%] items-center">
-            <FaInstagram className={style.media} />
-            <FaFacebookF className={style.media} />
-            <FaTwitter className={style.media} />
-            <FaYoutube className={style.media} />
+            <FaInstagram className={media} />
+            <FaFacebookF className={media} />
+            <FaTwitter className={media} />
+            <FaYoutube className={media} />
           </div>
           <div className="flex mr-3 md:mx-[15%] items-center hover:scale-110 duration-300 cursor-pointer">
             <FaRegUser className="m-2" />
@@ -37,8 +62,8 @@ const Layout = () => {
           </div>
         </div>
 
-        <div className="flex justify-around md:justify-between items-center mt-2">
-          <div className="flex items-center  md:mx-[15%]">
+        <div className="flex justify-between items-center my-4 md:mt-4 md:mb-[-3px] ">
+          <div className="hidden md:flex items-center mx-[15%]">
             <FiPhoneCall className="text-md md:text-3xl mr-2 text-primary" />
             <div>
               <p className=" text-[12px] md:text-sm text-primary">CALL US</p>
@@ -47,11 +72,20 @@ const Layout = () => {
               </p>
             </div>
           </div>
-          <p className="w-fit text-3xl text-primary font-bold font-serif">
-            Shop
-          </p>
+          <div className="flex items-center">
+            <div className="md:hidden" onClick={handleClick}>
+              {!nav ? (
+                <FiMenu className="w-10 text-2xl" />
+              ) : (
+                <AiOutlineClose className="w-10 text-2xl" />
+              )}
+            </div>
+            <p className="ml-3 md:ml-0 w-fit text-3xl text-primary font-bold font-serif">
+              Shop
+            </p>
+          </div>
 
-          <div className="text-lg flex md:text-2xl  md:mx-[15%] cursor-pointer">
+          <div className="mr-3 text-lg flex md:text-2xl  md:mx-[15%] cursor-pointer">
             <BsSearch className="mx-2 hover:scale-110 duration-300" />
             <Link className="mx-2 hover:scale-110 duration-300">
               <FaRegHeart></FaRegHeart>
@@ -61,23 +95,47 @@ const Layout = () => {
             </Link>
           </div>
         </div>
+        <nav>
+          <ul className={!nav ? "hidden" : mobileNavParent}>
+            <li className={mobileNav}>
+              <FaRegUser className={mobileNavIcon} />
+              <Link>My account</Link>
+            </li>
+            <li className={mobileNav}>
+              <BiSolidTShirt className={mobileNavIcon} />
+              <Link to="">Mens</Link>
+            </li>
+            <li className={mobileNav}>
+              <PiDressFill className={mobileNavIcon} />
+              <Link to="">Womens</Link>
+            </li>
+            <li className={mobileNav}>
+              <FaGamepad className={mobileNavIcon} />
+              <Link to="">Electronics</Link>
+            </li>
+            <li className="flex items-center w-full p-4">
+              <BsWatch className={mobileNavIcon} />
+              <Link to="">Jewelery</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <hr className="mt-6" />
+      <hr className="md:mt-6" />
       <nav>
-        <ul className="hidden md:flex items-center w-full justify-center uppercase font-serif ">
-          <li className={style.nav}>
+        <ul className={navBarParent}>
+          <li className={navBar}>
             <Link to="/">Home</Link>
           </li>
-          <li className={style.nav}>
+          <li className={navBar}>
             <Link to="">Mens</Link>
           </li>
-          <li className={style.nav}>
+          <li className={navBar}>
             <Link to="">Womens</Link>
           </li>
-          <li className={style.nav}>
+          <li className={navBar}>
             <Link to="">Electronics</Link>
           </li>
-          <li className={style.nav}>
+          <li className={navBar}>
             <Link to="">Jewelery</Link>
           </li>
         </ul>

@@ -40,12 +40,12 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex items-center  flex-col md:flex-row justify-evenly shadow-lg shadow-black/20">
+      <div className="flex items-center flex-col md:flex-row justify-evenly shadow-lg shadow-black/20 ">
         <div className="flex items-center my-4">
-          <BsTruck className="text-[3em] text-primary mr-4" />
+          <BsTruck className=" text-[2.4em] md:text-[3em] text-primary mr-4" />
           <div>
-            <p className="text-2xl font-bold">Free Shipping</p>
-            <p className="text-sm">
+            <p className="text-lg md:text-2xl font-bold">Free Shipping</p>
+            <p className="text-[12px] md:text-sm">
               Free shipping on all US <br />
               order or order abose $200
             </p>
@@ -53,10 +53,10 @@ const Home = () => {
         </div>
         <div className="h-[1px] md:h-[80px] bg-primary w-[80%] md:w-[1px]"></div>
         <div className="flex items-center   my-4">
-          <LuPackageOpen className="text-[3em] text-primary mr-4" />
+          <LuPackageOpen className=" text-[2.4em] md:text-[3em] text-primary mr-4" />
           <div>
-            <p className="text-2xl font-bold">30 Days Return</p>
-            <p className="text-sm">
+            <p className="text-lg md:text-2xl font-bold">30 Days Return</p>
+            <p className="text-[12px] md:text-sm">
               Simply return it within
               <br /> 30 days for an exchange
             </p>
@@ -65,10 +65,10 @@ const Home = () => {
         <div className="h-[1px] md:h-[80px] bg-primary w-[80%] md:w-[1px]"></div>
 
         <div className="flex items-center  my-4">
-          <RiSecurePaymentLine className="text-[3em] text-primary mr-4" />
+          <RiSecurePaymentLine className=" text-[2.4em] md:text-[3em] text-primary mr-4" />
           <div>
-            <p className="text-2xl font-bold">100% Payment Secure</p>
-            <p className="text-sm">
+            <p className="text-lg md:text-2xl font-bold">100% Payment Secure</p>
+            <p className="text-[12px] md:text-sm">
               Simply return it within <br />
               30 days for an exchange
             </p>
@@ -76,7 +76,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 max-w-[1240px] m-4 lg:mx-auto mt-[8em]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1240px] m-4 lg:mx-auto mt-[8em]">
         <div className="grid grid-cols-2 gap-4 h-[30em] ">
           <div
             style={{ backgroundImage: `url(${bgImage5})` }}

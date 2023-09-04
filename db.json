@@ -5,6 +5,7 @@
             "category": "men",
             "title": "T-Shirt",
             "price": 49.99,
+            "discount": 25,
             "description": "Lorem",
             "type": "t-shirt",
             "size": [
@@ -19,6 +20,7 @@
             "category": "men",
             "title": "Running Shoes",
             "price": 120,
+            "discount": 25,
             "description": "Lorem",
             "type": "shoes",
             "size": [
@@ -35,6 +37,7 @@
             "category": "men",
             "title": "Watch Men",
             "price": 130,
+            "discount": 10,
             "description": "Three Eye Watches Quartz Men's Watch Blue Glass Belt Watch Men",
             "type": "watch",
             "image": "/db/accesories/watch-1/watch1.jpg",
@@ -51,6 +54,7 @@
             "category": "women",
             "title": "Sleeveless Casual Mini Dress",
             "price": 120.99,
+            "discount": 15,
             "description": "Lorem",
             "type": "dress",
             "size": [
@@ -66,6 +70,7 @@
             "category": "men",
             "title": "Japanese Style Casual Men Single Shoulder Bag",
             "price": 133.99,
+            "discount": 30,
             "description": "Japanese Style Casual Men Single Shoulder Bag Waterproof Crossbody Bag High Quality Messenger Bag Nylon Cloth Handbag Chest Bag",
             "type": "bag",
             "image": "/db/accesories/bagMen.jpg"
@@ -75,6 +80,7 @@
             "category": "men",
             "title": "Leather Men Wallets",
             "price": 115.99,
+            "discount": 25,
             "description": "BISON DENIM Genuine Leather Men Wallets Brand Luxury RFID Bifold Wallet Zipper Coin Purse Business Card Holder Wallet N4470",
             "type": "walet",
             "image": "/db/accesories/walletMen.jpg"
@@ -84,6 +90,7 @@
             "category": "women",
             "title": "Woman shoulder bag Large capacity",
             "price": 80.99,
+            "discount": 15,
             "description": "Woman shoulder bag Large capacity Handbag for Women Crossbody bag Lychee pattern PU Portable bucket bag ladies messenger bags",
             "type": "bag",
             "image": "/db/accesories/bagWomen.jpg"
@@ -93,6 +100,7 @@
             "category": "women",
             "title": "Woman Casual Chiffon Wide Leg Pants",
             "price": 180.99,
+            "discount": 30,
             "description": "Fashion Woman Casual Chiffon Wide Leg Pants Big Size Loose Solid White Elastic Band High Waist Female Clothing Oversize Trousers",
             "type": "pants",
             "image": "/db/women/pants.jpg"
