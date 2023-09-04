@@ -1,0 +1,101 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "category": "men",
+            "title": "T-Shirt",
+            "price": 49.99,
+            "description": "Lorem",
+            "type": "t-shirt",
+            "size": [
+                "XS",
+                "S",
+                "M"
+            ],
+            "image": "/db/men/tshirt.jpg"
+        },
+        {
+            "id": 2,
+            "category": "men",
+            "title": "Running Shoes",
+            "price": 120,
+            "description": "Lorem",
+            "type": "shoes",
+            "size": [
+                "40",
+                "41",
+                "42",
+                "43",
+                "44"
+            ],
+            "image": "/db/men/RunningShoesMen.jpg"
+        },
+        {
+            "id": 3,
+            "category": "men",
+            "title": "Watch Men",
+            "price": 130,
+            "description": "Three Eye Watches Quartz Men's Watch Blue Glass Belt Watch Men",
+            "type": "watch",
+            "image": "/db/accesories/watch-1/watch1.jpg",
+            "imagesProduct": [
+                "/db/accesories/watch1.jpg",
+                "/db/accesories/watch2.jpg",
+                "/db/accesories/watch3.jpg",
+                "/db/accesories/watch4.jpg",
+                "/db/accesories/watch5.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "category": "women",
+            "title": "Sleeveless Casual Mini Dress",
+            "price": 120.99,
+            "description": "Lorem",
+            "type": "dress",
+            "size": [
+                "XS",
+                "S",
+                "M",
+                "L"
+            ],
+            "image": "/db/women/dress.jpg"
+        },
+        {
+            "id": 5,
+            "category": "men",
+            "title": "Japanese Style Casual Men Single Shoulder Bag",
+            "price": 133.99,
+            "description": "Japanese Style Casual Men Single Shoulder Bag Waterproof Crossbody Bag High Quality Messenger Bag Nylon Cloth Handbag Chest Bag",
+            "type": "bag",
+            "image": "/db/accesories/bagMen.jpg"
+        },
+        {
+            "id": 7,
+            "category": "men",
+            "title": "Leather Men Wallets",
+            "price": 115.99,
+            "description": "BISON DENIM Genuine Leather Men Wallets Brand Luxury RFID Bifold Wallet Zipper Coin Purse Business Card Holder Wallet N4470",
+            "type": "walet",
+            "image": "/db/accesories/walletMen.jpg"
+        },
+        {
+            "id": 6,
+            "category": "women",
+            "title": "Woman shoulder bag Large capacity",
+            "price": 80.99,
+            "description": "Woman shoulder bag Large capacity Handbag for Women Crossbody bag Lychee pattern PU Portable bucket bag ladies messenger bags",
+            "type": "bag",
+            "image": "/db/accesories/bagWomen.jpg"
+        },
+        {
+            "id": 8,
+            "category": "women",
+            "title": "Woman Casual Chiffon Wide Leg Pants",
+            "price": 180.99,
+            "description": "Fashion Woman Casual Chiffon Wide Leg Pants Big Size Loose Solid White Elastic Band High Waist Female Clothing Oversize Trousers",
+            "type": "pants",
+            "image": "/db/women/pants.jpg"
+        }
+    ]
+}

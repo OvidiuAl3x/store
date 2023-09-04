@@ -8,6 +8,7 @@ import bgImage5 from "../assets/smart-watch-821559_1920.jpg";
 import { BsTruck } from "react-icons/bs";
 import { LuPackageOpen } from "react-icons/lu";
 import { RiSecurePaymentLine } from "react-icons/ri";
+import FeaturedProducts from "./FeaturedProducts";
 
 const style = {
   button:
@@ -120,6 +121,8 @@ const Home = () => {
           <button className={style.button}>Shop Now</button>
         </div>
       </div>
+
+      <FeaturedProducts />
     </>
   );
 };
