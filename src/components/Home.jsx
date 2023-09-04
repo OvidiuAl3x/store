@@ -2,7 +2,6 @@ import React from "react";
 import bgImage from "../assets/store-906722_1920.jpg";
 import bgImage2 from "../assets/womans-legs-887286_1920.jpg";
 import bgImage3 from "../assets/necktie-1284463_1920.jpg";
-// import bgImage3 from "../assets/accessory-3002608_1920.jpg";
 import bgImage4 from "../assets/pocket-watch-2569573_1920.jpg";
 import bgImage5 from "../assets/smart-watch-821559_1920.jpg";
 import { BsTruck } from "react-icons/bs";
