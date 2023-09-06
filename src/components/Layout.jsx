@@ -11,6 +11,8 @@ import {
   FaRegUser,
   FaRegHeart,
   FaGamepad,
+  FaHome,
+  FaUserAlt,
 } from "react-icons/fa";
 import { PiDressFill } from "react-icons/pi";
 import { BsSearch, BsWatch } from "react-icons/bs";
@@ -64,7 +66,7 @@ const Layout = () => {
 
         <div className="flex justify-between items-center my-4 md:mt-4 md:mb-[-3px] ">
           <div className="hidden md:flex items-center mx-[15%]">
-            <FiPhoneCall className="text-md md:text-3xl mr-2 text-primary" />
+            <FiPhoneCall className="text-base md:text-3xl mr-2 text-primary" />
             <div>
               <p className=" text-[12px] md:text-sm text-primary">CALL US</p>
               <p className="font-bold text-[12px] md:text-[14px]">
@@ -98,8 +100,12 @@ const Layout = () => {
         <nav>
           <ul className={!nav ? "hidden" : mobileNavParent}>
             <li className={mobileNav}>
-              <FaRegUser className={mobileNavIcon} />
+              <FaUserAlt className={mobileNavIcon} />
               <Link>My account</Link>
+            </li>
+            <li className={mobileNav}>
+              <FaHome className={mobileNavIcon} />
+              <Link to="">Home</Link>
             </li>
             <li className={mobileNav}>
               <BiSolidTShirt className={mobileNavIcon} />

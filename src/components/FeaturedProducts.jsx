@@ -32,9 +32,9 @@ const FeaturedProducts = () => {
               <img src={item.image} alt="" className="h-full w-full" />
             </div>
 
-            <p className="text-sm md:text-md font-semibold">{item.title}</p>
+            <p className="text-sm md:text-base font-semibold">{item.title}</p>
             <br />
-            <div className="flex justify-center mt-auto text-md md:text-lg">
+            <div className="flex justify-center mt-auto text-base md:text-lg">
               <p className="mr-2 line-through">${item.price}</p>
               <p className="text-primary font-semibold">
                 ${(item.price * ((100 - item.discount) / 100)).toFixed(2)}

@@ -26,11 +26,13 @@ const Home = () => {
         className="bg-center bg-no-repeat flex items-start flex-col justify-center -mt-[30px] h-[60vh]"
       >
         <div className="ml-4 md:ml-[10%] backdrop-blur-sm">
-          <p className="font-bold text-[3em] md:text-[5em] text-primary">new</p>
-          <p className="font-bold text-[3em] md:text-[5em] mt-[-0.6em] text-primary">
+          <p className="font-bold text-[3em] md:text-[5em] text-primary strokeClass">
+            new
+          </p>
+          <p className="font-bold text-[3em] md:text-[5em] mt-[-0.6em] text-primary strokeClass">
             collection
           </p>
-          <p className="text-md md:text-lg">
+          <p className="text-base md:text-lg">
             From t-shirt, jeans, jacket, shirt, watches, bags
           </p>
           <button className="bg-primary uppercase text-white mt-10 px-4 py-2 md:px-8 md:py-4 font-bold hover:scale-105 duration-150 rounded-xl">
@@ -82,8 +84,8 @@ const Home = () => {
             className={style.bgImage}
           >
             <div className="uppercase text-white backdrop-blur-md">
-              <p className="text-md ">Men's Online</p>
-              <p className="text-xl  font-bold">accessories</p>
+              <p className="text-sm md:text-base ">Men's Online</p>
+              <p className="text-base md:text-xl font-bold">accessories</p>
             </div>
             <button className={style.button}>Shop Now</button>
           </div>
@@ -92,8 +94,8 @@ const Home = () => {
             className={style.bgImage}
           >
             <div className="uppercase text-white backdrop-blur-md">
-              <p className="text-md ">For Women Online</p>
-              <p className="text-xl font-bold">Women's jewelery</p>
+              <p className="text-sm md:text-base  ">For Women Online</p>
+              <p className="text-base md:text-xl font-bold">Women's jewelery</p>
             </div>
 
             <button className={style.button}>Shop Now</button>
@@ -104,8 +106,10 @@ const Home = () => {
             className={style.bgImageColSpan2}
           >
             <div className="uppercase text-white backdrop-blur-md">
-              <p className="text-xl ">Men's</p>
-              <p className="text-3xl font-bold">Collection</p>
+              <p className="text-base md:text-xl ">Men's</p>
+              <p className="text-2xl md:text-3xl font-bold strokeClass">
+                Collection
+              </p>
             </div>
             <button className={style.button}>Shop Now</button>
           </div>
@@ -115,9 +119,11 @@ const Home = () => {
           style={{ backgroundImage: `url(${bgImage2})` }}
           className="bg-cover bg-center bg-no-repeat flex items-start flex-col justify-center p-3 shadow-lg shadow-black/30"
         >
-          <div className="uppercase text-white backdrop-blur-md">
-            <p className="text-xl ">Women's</p>
-            <p className="text-3xl font-bold">Collection</p>
+          <div className="uppercase text-white backdrop-blur-md ">
+            <p className="text-base md:text-xl">Women's</p>
+            <p className="text-2xl md:text-3xl  font-bold strokeClass ">
+              Collection
+            </p>
           </div>
           <button className={style.button}>Shop Now</button>
         </div>
