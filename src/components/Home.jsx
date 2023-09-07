@@ -33,7 +33,7 @@ const Home = () => {
             collection
           </p>
           <p className="text-base md:text-lg">
-            From t-shirt, jeans, jacket, shirt, watches, bags
+            From t-shirts, jeans, jackets, shirts, watches, bags
           </p>
           <button className="bg-primary uppercase text-white mt-10 px-4 py-2 md:px-8 md:py-4 font-bold hover:scale-105 duration-150 rounded-xl">
             Shop Now

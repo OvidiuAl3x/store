@@ -82,9 +82,11 @@ const Layout = () => {
                 <AiOutlineClose className="w-10 text-2xl" />
               )}
             </div>
-            <p className="ml-3 md:ml-0 w-fit text-3xl text-primary font-bold font-serif">
-              Shop
-            </p>
+            <Link to="/">
+              <p className="ml-3 md:ml-0 w-fit text-3xl text-primary font-bold font-serif">
+                Shop
+              </p>
+            </Link>
           </div>
 
           <div className="mr-3 text-lg flex md:text-2xl  md:mx-[15%] cursor-pointer">
@@ -105,7 +107,7 @@ const Layout = () => {
             </li>
             <li className={mobileNav}>
               <FaHome className={mobileNavIcon} />
-              <Link to="">Home</Link>
+              <Link to="/products">Home</Link>
             </li>
             <li className={mobileNav}>
               <BiSolidTShirt className={mobileNavIcon} />
@@ -130,7 +132,7 @@ const Layout = () => {
       <nav>
         <ul className={navBarParent}>
           <li className={navBar}>
-            <Link to="/">Home</Link>
+            <Link to="/products">Home</Link>
           </li>
           <li className={navBar}>
             <Link to="">Mens</Link>

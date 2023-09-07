@@ -54,7 +54,7 @@
             "category": "women",
             "title": "Sleeveless Casual Mini Dress",
             "price": 120.99,
-            "discount": 15,
+            "discount": 55,
             "description": "Lorem",
             "type": "dress",
             "size": [
@@ -90,7 +90,6 @@
             "category": "women",
             "title": "Woman shoulder bag Large capacity",
             "price": 80.99,
-            "discount": 15,
             "description": "Woman shoulder bag Large capacity Handbag for Women Crossbody bag Lychee pattern PU Portable bucket bag ladies messenger bags",
             "type": "bag",
             "image": "/db/accesories/bagWomen.jpg"
