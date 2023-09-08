@@ -20,7 +20,7 @@ import { BiSolidTShirt } from "react-icons/bi";
 
 const style = {
   parent:
-    "mb-10 md:mb-0 fixed z-10 w-full md:relative bg-[#f2f6ff] border-b-[3px] border-primary md:border-b-0",
+    "mb-10 md:mb-0 w-full md:relative bg-[#f2f6ff] border-b-[3px] border-primary md:border-b-0",
   media:
     "text-[25px] rounded-full border border-white p-1 m-[3px] cursor-pointer hover:scale-110 duration-300",
   navBar: "m-10 hover:scale-110  duration-300",
@@ -128,7 +128,7 @@ const Layout = () => {
           </ul>
         </nav>
       </div>
-      <hr className="md:mt-6" />
+      <hr className="md:mt-6 hidden md:block" />
       <nav>
         <ul className={navBarParent}>
           <li className={navBar}>

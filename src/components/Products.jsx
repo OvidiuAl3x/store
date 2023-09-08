@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../service/ApiRequest";
-import { BiCircle, BiSolidCheckCircle } from "react-icons/bi";
+
 import ProductsCards from "./ProductsCard";
 
 const style = {
@@ -13,23 +13,32 @@ const Products = () => {
   const { h1 } = style;
   const [data, setData] = useState();
   const [discount, setDiscount] = useState(false);
-
   useEffect(() => {
     (async () => {
       const data = await GetData();
-      if (discount) {
-        const newItem = data?.filter((item) => {
-          return item.discount;
-        });
-        setData(newItem);
-      } else {
-        setData(data);
-      }
+      setData(data);
     })();
-  }, [discount]);
+  }, []);
 
-  const handleClick = () => {
-    setDiscount(!discount);
+  const handleSort = async (e) => {
+    let value = e.target.value;
+    let asc;
+    if (value === "priceLow") {
+      const data = await GetData((value = "price"), (asc = "asc"));
+      setData(data);
+    } else if (value === "priceHigh") {
+      const data = await GetData((value = "price"), (asc = "desc"));
+      setData(data);
+    } else if (value === "discount") {
+      const data = await GetData((value = "discount"), (asc = "desc"));
+      const newItem = data?.filter((item) => {
+        return item.discount;
+      });
+      setData(newItem);
+    } else {
+      const data = await GetData(value);
+      setData(data);
+    }
   };
 
   const numberProducts = data?.length;
@@ -50,23 +59,14 @@ const Products = () => {
           </p>
         </div>
         <hr />
-        <div className="mt-3 flex items-center">
-          <div
-            className="flex items-center text-xl w-fit rounded-full px-2 py-1 cursor-pointer border-2 border-primary"
-            onClick={handleClick}
-          >
-            {!discount ? <BiCircle /> : <BiSolidCheckCircle />}
-
-            <p className="mr-1 ml-2 text-sm">Discount</p>
-          </div>
-          <div className="ml-4 border-2 border-primary rounded-full px-2 py-1 text-sm">
+        <div className="mt-3 w-fit">
+          <div className="border-2 border-primary rounded-full px-2 py-1 text-sm">
             <label for="products">Sort by: </label>
-            <select name="products">
+            <select name="products" onChange={handleSort}>
               <option value="featured">Featured</option>
               <option value="priceLow">Price: Low to High</option>
               <option value="priceHigh">Price: High to low</option>
-              <option value="discountLow">Discount: Low to High</option>
-              <option value="discountHigh">Discount: High to low</option>
+              <option value="discount">Discount: High to low</option>
             </select>
           </div>
         </div>
