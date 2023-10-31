@@ -21,4 +21,18 @@ html {
 } */
 input[type="checkbox"] {
   accent-color: #46988f;
+  margin-right: 5px;
+}
+
+.scrollBar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  background: #46988f;
+  border-radius: 10px;
+}
+
+.scrollBar::-webkit-scrollbar-thumb:hover {
+  background: rgb(62, 196, 182);
 }

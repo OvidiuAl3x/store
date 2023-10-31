@@ -24,7 +24,9 @@ const Products = () => {
 
   const filteredData = data?.filter(
     (item) =>
-      filterTags.length === 0 || filterTags.includes(item.type.toLowerCase())
+      filterTags.length === 0 ||
+      filterTags.includes(item.type.toLowerCase()) ||
+      filterTags.includes(item.size)
   );
 
   const handleSort = async (e) => {
@@ -48,28 +50,13 @@ const Products = () => {
     }
   };
 
-  const numberProducts = data?.length;
-
   return (
-    <div>
-      <LeftBar
-        filterTags={filterTags}
-        setFilterTags={setFilterTags}
-      />
-      <div className="max-w-[1240px] m-4 lg:mx-auto mt-[2em]">
+    <div className="grid grid-cols-[1fr,5fr] gap-10">
+      <LeftBar filterTags={filterTags} setFilterTags={setFilterTags} />
+      <div className="max-w-[1240px]">
         <div className="bg-white h-32 mb-2 p-5">
           <div className="flex items-end">
             <h1 className={h1}>Products</h1>
-            <p className="text-xl ml-10">
-              {numberProducts > 1 ? (
-                <>
-                  {numberProducts}{" "}
-                  {numberProducts === 1 ? "product" : "products"}
-                </>
-              ) : (
-                "0 products found"
-              )}
-            </p>
           </div>
           <hr />
           <div className="mt-3 w-fit">
