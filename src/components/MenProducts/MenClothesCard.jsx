@@ -1,16 +1,20 @@
 import React from "react";
 
 const style = {
-  imgParent: "max-h-[200px] min-h-[200px] md:max-h-[300px] md:min-h-[300px]",
+  // imgParent: "max-h-[250px] min-h-[250px] lg:max-h-[300px] lg:min-h-[300px]",
+  imgParent: "w-[200px] lg:w-[250px] m-auto",
 };
 
-const ProductsCards = ({ data }) => {
+const MenClothesCard = ({ data }) => {
   const { imgParent } = style;
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center mx-2 ">
       {data?.map((item) => (
-        <div className="bg-white flex flex-col py-5" key={item.id}>
+        <div
+          className="bg-white flex flex-col py-5 shadow-lg w-fit"
+          key={item.id}
+        >
           {item.discount ? (
             <span className="absolute ml-[10px] mt-[-10px] bg-primary px-[6px] text-white">
               {item.discount}%
@@ -18,7 +22,7 @@ const ProductsCards = ({ data }) => {
           ) : null}
 
           <div className={imgParent}>
-            <img src={item.image} alt="" className="h-full w-full" />
+            <img src={item.image} alt={item.title} className="h-full w-full" />
           </div>
 
           <p className="text-sm md:text-base font-semibold">{item.title}</p>
@@ -39,4 +43,4 @@ const ProductsCards = ({ data }) => {
   );
 };
 
-export default ProductsCards;
+export default MenClothesCard;

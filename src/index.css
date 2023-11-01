@@ -16,9 +16,6 @@ html {
     -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-/* input[type="checkbox"]  {
-  display: none;
-} */
 input[type="checkbox"] {
   accent-color: #46988f;
   margin-right: 5px;

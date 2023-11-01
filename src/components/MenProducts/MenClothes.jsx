@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { GetData } from "../service/ApiRequest";
-
-import ProductsCards from "./ProductsCard";
-import LeftBar from "./LeftBar";
+import { GetDataMenClothes } from "../../service/ApiRequest";
+import LeftBar from "../LeftBar";
+import MenProductsCards from "./MenClothesCard";
 
 const style = {
   button:
@@ -10,14 +9,15 @@ const style = {
   h1: "text-2xl md:text-4xl",
 };
 
-const Products = () => {
+const MenClothes = () => {
   const { h1 } = style;
   const [data, setData] = useState();
   const [filterTags, setFilterTags] = useState([]);
+  const [filterMobile, setFilterMobile] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const data = await GetData();
+      const data = await GetDataMenClothes();
       setData(data);
     })();
   }, []);
@@ -33,34 +33,49 @@ const Products = () => {
     let value = e.target.value;
     let asc;
     if (value === "priceLow") {
-      const data = await GetData((value = "price"), (asc = "asc"));
+      const data = await GetDataMenClothes((value = "price"), (asc = "asc"));
       setData(data);
     } else if (value === "priceHigh") {
-      const data = await GetData((value = "price"), (asc = "desc"));
+      const data = await GetDataMenClothes((value = "price"), (asc = "desc"));
       setData(data);
     } else if (value === "discount") {
-      const data = await GetData((value = "discount"), (asc = "desc"));
+      const data = await GetDataMenClothes(
+        (value = "discount"),
+        (asc = "desc")
+      );
       const newItem = data?.filter((item) => {
         return item.discount;
       });
       setData(newItem);
     } else {
-      const data = await GetData(value);
+      const data = await GetDataMenClothes(value);
       setData(data);
     }
   };
 
   return (
-    <div className="grid grid-cols-[1fr,5fr] gap-10">
-      <LeftBar filterTags={filterTags} setFilterTags={setFilterTags} />
-      <div className="max-w-[1240px]">
+    <div className="grid md:grid-cols-[2fr,6fr] lg:grid-cols-[2fr,7fr] xl:grid-cols-[1fr,5fr] xl:gap-10">
+      <LeftBar
+        filterTags={filterTags}
+        setFilterTags={setFilterTags}
+        data={data}
+        filterMobile={filterMobile}
+        setFilterMobile={setFilterMobile}
+      />
+      <div className="max-w-[1240px] mr-2">
         <div className="bg-white h-32 mb-2 p-5">
           <div className="flex items-end">
             <h1 className={h1}>Products</h1>
           </div>
           <hr />
-          <div className="mt-3 w-fit">
-            <div className="border-2 border-primary rounded-full px-2 py-1 text-sm">
+          <div className="mt-3 flex gap-5 justify-around md:block">
+            <div
+              className="border-2 border-primary rounded-full px-2 py-1 text-sm md:hidden"
+              onClick={() => setFilterMobile(true)}
+            >
+              <p>Filters</p>
+            </div>
+            <div className="border-2 border-primary rounded-full px-2 py-1 text-sm w-fit">
               <label for="products">Sort by: </label>
               <select name="products" onChange={handleSort}>
                 <option value="featured">Featured</option>
@@ -71,10 +86,10 @@ const Products = () => {
             </div>
           </div>
         </div>
-        <ProductsCards data={filteredData} />
+        <MenProductsCards data={filteredData} />
       </div>
     </div>
   );
 };
 
-export default Products;
+export default MenClothes;

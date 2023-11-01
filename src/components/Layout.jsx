@@ -16,14 +16,16 @@ import {
 } from "react-icons/fa";
 import { PiDressFill } from "react-icons/pi";
 import { BsSearch, BsWatch } from "react-icons/bs";
-import { BiSolidTShirt } from "react-icons/bi";
+import { BiSolidTShirt, BiSolidWatch, BiSolidWallet } from "react-icons/bi";
+import { GiConverseShoe, GiClothes } from "react-icons/gi";
+import { BsArrowDown } from "react-icons/bs";
 
 const style = {
   parent:
     "mb-10 md:mb-0 w-full md:relative bg-[#f2f6ff] border-b-[3px] border-primary md:border-b-0",
   media:
     "text-[25px] rounded-full border border-white p-1 m-[3px] cursor-pointer hover:scale-110 duration-300",
-  navBar: "m-10 hover:scale-110  duration-300",
+  navBar: "m-10",
   navBarParent:
     "hidden md:flex items-center w-full justify-center uppercase font-serif",
   mobileNav: "flex items-center border-b-2 border-primary w-full p-4",
@@ -43,6 +45,7 @@ const Layout = () => {
     mobileNavParent,
   } = style;
   const [nav, setNav] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
 
   const handleClick = () => {
     setNav(!nav);
@@ -107,11 +110,11 @@ const Layout = () => {
             </li>
             <li className={mobileNav}>
               <FaHome className={mobileNavIcon} />
-              <Link to="/products">Home</Link>
+              <Link to="">Home</Link>
             </li>
             <li className={mobileNav}>
               <BiSolidTShirt className={mobileNavIcon} />
-              <Link to="">Mens</Link>
+              <Link to="/men-products">Mens</Link>
             </li>
             <li className={mobileNav}>
               <PiDressFill className={mobileNavIcon} />
@@ -132,10 +135,43 @@ const Layout = () => {
       <nav>
         <ul className={navBarParent}>
           <li className={navBar}>
-            <Link to="/products">Home</Link>
+            <Link to="">Home</Link>
           </li>
           <li className={navBar}>
-            <Link to="">Mens</Link>
+            <Link
+              to="/men-products"
+              className="flex items-center  hover:scale-110"
+              onMouseOver={() => setDropDown(true)}
+              onMouseOut={() => setDropDown(false)}
+            >
+              Mens <BsArrowDown />
+            </Link>
+            {dropDown ? (
+              <div
+                className="flex flex-col border-2 border-primary absolute bg-white duration-300 p-2"
+                onMouseOver={() => setDropDown(true)}
+                onMouseOut={() => setDropDown(false)}
+              >
+                <Link to="/men-clothes" className="p-2 flex items-center">
+                  <GiClothes className="mr-2" />
+                  <span className="hover:text-primary text-sm">Clothes</span>
+                </Link>
+                <Link to="/men-accessories" className="p-2 flex items-center">
+                  <BiSolidWatch className="mr-2" />
+                  <span className="hover:text-primary text-sm">
+                    Accessories
+                  </span>
+                </Link>
+                <Link to="/men-shoes" className="p-2 flex items-center">
+                  <GiConverseShoe className="mr-2" />
+                  <span className="hover:text-primary text-sm">Shoes</span>
+                </Link>
+                <Link to="/men-watches" className="p-2 flex items-center">
+                  <BiSolidWallet className="mr-2" />
+                  <span className="hover:text-primary text-sm">Watches</span>
+                </Link>
+              </div>
+            ) : null}
           </li>
           <li className={navBar}>
             <Link to="">Womens</Link>
