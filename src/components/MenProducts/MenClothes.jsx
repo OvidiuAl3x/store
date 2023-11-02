@@ -62,7 +62,7 @@ const MenClothes = () => {
         filterMobile={filterMobile}
         setFilterMobile={setFilterMobile}
       />
-      <div className="max-w-[1240px] mr-2">
+      <div className="max-w-[1240px] mx-2 md:mr-2">
         <div className="bg-white h-32 mb-2 p-5">
           <div className="flex items-end">
             <h1 className={h1}>Products</h1>

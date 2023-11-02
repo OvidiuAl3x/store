@@ -10,6 +10,8 @@
             "type": "t-shirt",
             "type2": "clothes",
             "size": "S",
+            "review": 13,
+            "reviewStar": 2,
             "image": "/db/men/tshirt.jpg"
         },
         {
@@ -102,6 +104,48 @@
             "type2": "clothes",
             "image": "/db/women/pants.jpg",
             "size": "M"
+        },
+        {
+            "id": 9,
+            "category": "men",
+            "title": "Hoodie",
+            "price": 149.99,
+            "discount": 10,
+            "description": "Lorem",
+            "type": "hoodie",
+            "type2": "clothes",
+            "size": "S",
+            "review": 2,
+            "reviewStar": 5,
+            "image": "/db/men/hanorac2.jpg"
+        },
+        {
+            "id": 10,
+            "category": "men",
+            "title": "Hoodie",
+            "price": 249.99,
+            "discount": 5,
+            "description": "Lorem",
+            "type": "hoodie",
+            "type2": "clothes",
+            "size": "L",
+            "review": 13,
+            "reviewStar": 3,
+            "image": "/db/men/hanorac.jpeg"
+        },
+        {
+            "id": 11,
+            "category": "men",
+            "title": "Shorts",
+            "price": 39.99,
+            "discount": 15,
+            "description": "Lorem",
+            "type": "shorts",
+            "type2": "clothes",
+            "size": "XL",
+            "review": 30,
+            "reviewStar": 4,
+            "image": "/db/men/pantaloni-scurti.jpg"
         }
     ]
 }

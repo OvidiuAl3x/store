@@ -18,7 +18,6 @@ import { PiDressFill } from "react-icons/pi";
 import { BsSearch, BsWatch } from "react-icons/bs";
 import { BiSolidTShirt, BiSolidWatch, BiSolidWallet } from "react-icons/bi";
 import { GiConverseShoe, GiClothes } from "react-icons/gi";
-import { BsArrowDown } from "react-icons/bs";
 
 const style = {
   parent:
@@ -31,7 +30,7 @@ const style = {
   mobileNav: "flex items-center border-b-2 border-primary w-full p-4",
   mobileNavIcon: "mr-2 text-[20px]",
   mobileNavParent:
-    "absolute bg-[#f2f6ff] w-full px-8 md:hidden z-10  border-b-[3px] border-primary",
+    "absolute bg-[#f2f6ff] w-full px-8 md:hidden z-10  border-b-[3px] border-primary  animate-translateX h-full",
 };
 
 const Layout = () => {
@@ -50,6 +49,14 @@ const Layout = () => {
   const handleClick = () => {
     setNav(!nav);
   };
+
+  // overflow hidden when open nav on mobile
+  if (nav) {
+    document.getElementsByTagName("body")[0].style.overflow = "hidden";
+  } else {
+    document.getElementsByTagName("body")[0].style.overflow = "auto";
+  }
+  //
 
   return (
     <>
@@ -106,27 +113,37 @@ const Layout = () => {
           <ul className={!nav ? "hidden" : mobileNavParent}>
             <li className={mobileNav}>
               <FaUserAlt className={mobileNavIcon} />
-              <Link>My account</Link>
+              <Link onClick={() => setNav(false)}>My account</Link>
             </li>
             <li className={mobileNav}>
               <FaHome className={mobileNavIcon} />
-              <Link to="">Home</Link>
+              <Link to="" onClick={() => setNav(false)}>
+                Home
+              </Link>
             </li>
             <li className={mobileNav}>
               <BiSolidTShirt className={mobileNavIcon} />
-              <Link to="/men-products">Mens</Link>
+              <Link to="/men-products" onClick={() => setNav(false)}>
+                Mens
+              </Link>
             </li>
             <li className={mobileNav}>
               <PiDressFill className={mobileNavIcon} />
-              <Link to="">Womens</Link>
+              <Link to="" onClick={() => setNav(false)}>
+                Womens
+              </Link>
             </li>
             <li className={mobileNav}>
               <FaGamepad className={mobileNavIcon} />
-              <Link to="">Electronics</Link>
+              <Link to="" onClick={() => setNav(false)}>
+                Electronics
+              </Link>
             </li>
-            <li className="flex items-center w-full p-4">
+            <li className={mobileNav}>
               <BsWatch className={mobileNavIcon} />
-              <Link to="">Jewelery</Link>
+              <Link to="" onClick={() => setNav(false)}>
+                Jewelery
+              </Link>
             </li>
           </ul>
         </nav>
@@ -144,25 +161,34 @@ const Layout = () => {
               onMouseOver={() => setDropDown(true)}
               onMouseOut={() => setDropDown(false)}
             >
-              Mens <BsArrowDown />
+              Mens
             </Link>
             {dropDown ? (
               <div
-                className="flex flex-col border-2 border-primary absolute bg-white duration-300 p-2"
+                className="flex flex-col border-2 border-primary absolute bg-white p-2 animate-opacity "
                 onMouseOver={() => setDropDown(true)}
                 onMouseOut={() => setDropDown(false)}
               >
-                <Link to="/men-clothes" className="p-2 flex items-center">
+                <Link
+                  to="/men-clothes"
+                  className="p-2 flex items-center border-b-primary border-b-[1px]"
+                >
                   <GiClothes className="mr-2" />
                   <span className="hover:text-primary text-sm">Clothes</span>
                 </Link>
-                <Link to="/men-accessories" className="p-2 flex items-center">
+                <Link
+                  to="/men-accessories"
+                  className="p-2 flex items-center border-b-primary border-b-[1px]"
+                >
                   <BiSolidWatch className="mr-2" />
                   <span className="hover:text-primary text-sm">
                     Accessories
                   </span>
                 </Link>
-                <Link to="/men-shoes" className="p-2 flex items-center">
+                <Link
+                  to="/men-shoes"
+                  className="p-2 flex items-center border-b-primary border-b-[1px]"
+                >
                   <GiConverseShoe className="mr-2" />
                   <span className="hover:text-primary text-sm">Shoes</span>
                 </Link>

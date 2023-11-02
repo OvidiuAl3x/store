@@ -12,15 +12,21 @@ module.exports = {
     extend: {
       colors: {
         primary: "#46988F",
+        hover: "#20AC9D",
       },
       keyframes: {
         opacity: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        translateX: {
+          "0%": { translate: "-25em" },
+          "100%": { translate: "0px" },
+        },
       },
       animation: {
         opacity: "opacity 1s ease-in-out",
+        translateX: "translateX 1s ease-in-out",
       },
     },
   },
