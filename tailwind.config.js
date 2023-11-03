@@ -23,10 +23,16 @@ module.exports = {
           "0%": { translate: "-25em" },
           "100%": { translate: "0px" },
         },
+        translateFav: {
+          "0%": { opacity: "0", transform: "scale(1.5)" },
+
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         opacity: "opacity 1s ease-in-out",
         translateX: "translateX 1s ease-in-out",
+        translateFav: "translateFav 0.5s ease-in-out",
       },
     },
   },

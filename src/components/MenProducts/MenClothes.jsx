@@ -9,7 +9,7 @@ const style = {
   h1: "text-2xl md:text-4xl",
 };
 
-const MenClothes = () => {
+const MenClothes = ({ favorite, setFavorite }) => {
   const { h1 } = style;
   const [data, setData] = useState();
   const [filterTags, setFilterTags] = useState([]);
@@ -86,7 +86,12 @@ const MenClothes = () => {
             </div>
           </div>
         </div>
-        <MenProductsCards data={filteredData} />
+
+        <MenProductsCards
+          data={filteredData}
+          favorite={favorite}
+          setFavorite={setFavorite}
+        />
       </div>
     </div>
   );

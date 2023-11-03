@@ -101,8 +101,8 @@ const Layout = () => {
 
           <div className="mr-3 text-lg flex md:text-2xl  md:mx-[15%] cursor-pointer">
             <BsSearch className="mx-2 hover:scale-110 duration-300" />
-            <Link className="mx-2 hover:scale-110 duration-300">
-              <FaRegHeart></FaRegHeart>
+            <Link to="/favorite" className="mx-2 hover:scale-110 duration-300">
+              <FaRegHeart />
             </Link>
             <Link className="ml-2 hover:scale-110 duration-300">
               <FaOpencart />

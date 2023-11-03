@@ -1,13 +1,32 @@
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 const style = {
-  // imgParent: "max-h-[250px] min-h-[250px] lg:max-h-[300px] lg:min-h-[300px]",
   imgParent: "max-w-[150px] md:max-w-[250px]  md:max-h-[300px] m-auto",
 };
 
-const MenClothesCard = ({ data }) => {
+const MenClothesCard = ({ data, favorite, setFavorite }) => {
   const { imgParent } = style;
+
+  const addFavorite = (product) => {
+    let newFavorite = [...favorite];
+    let itemFavorite = newFavorite.find((item) => product.id === item.id);
+    if (!itemFavorite) {
+      itemFavorite = { ...product, quantity: 1 };
+      newFavorite.push(itemFavorite);
+    } else {
+      console.log("already exist");
+    }
+    setFavorite(newFavorite);
+  };
+
+  const removeFavorite = (product) => {
+    const remove = favorite.filter((element) => element.id !== product);
+    setFavorite(remove);
+  };
+
+  const checkFavorite = (item) => favorite?.find((item2) => item2.id === item);
 
   return (
     <div className="flex gap-2 md:gap-5 flex-wrap justify-center md:justify-normal">
@@ -21,7 +40,19 @@ const MenClothesCard = ({ data }) => {
               {item.discount}%
             </span>
           ) : null}
-
+          <div className="ml-auto">
+            {!checkFavorite(item.id) ? (
+              <FaRegHeart
+                className="absolute mt-2 ml-[-30px] text-lg cursor-pointer"
+                onClick={() => addFavorite(item)}
+              />
+            ) : (
+              <FaHeart
+                className="absolute mt-2 ml-[-30px] text-lg cursor-pointer text-red-600 animate-translateFav"
+                onClick={() => removeFavorite(item.id)}
+              />
+            )}
+          </div>
           <div className={imgParent}>
             <img src={item.image} alt={item.title} className="h-full w-full" />
           </div>
