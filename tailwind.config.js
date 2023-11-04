@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         primary: "#46988F",
         hover: "#20AC9D",
+        secondary: "#888888",
       },
       keyframes: {
         opacity: {

@@ -6,8 +6,20 @@ const style = {
   imgParent: "max-w-[150px] md:max-w-[250px]  md:max-h-[300px] m-auto",
 };
 
-const MenClothesCard = ({ data, favorite, setFavorite }) => {
+const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
   const { imgParent } = style;
+
+  const addToCart = (product) => {
+    let newCart = [...cart];
+    let itemInCart = newCart.find((item) => product.id === item.id);
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = { ...product, quantity: 1 };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
+  };
 
   const addFavorite = (product) => {
     let newFavorite = [...favorite];
@@ -86,7 +98,10 @@ const MenClothesCard = ({ data, favorite, setFavorite }) => {
                   ${item.price}
                 </p>
               )}
-              <div className="flex items-center bg-primary  cursor-pointer m-2 rounded-[4px] border-2 border-black hover:bg-hover">
+              <div
+                className="flex items-center bg-primary  cursor-pointer m-2 rounded-[4px] border-2 border-black hover:bg-hover"
+                onClick={() => addToCart(item)}
+              >
                 <div className="rounded-br-2xl bg-white px-2 h-full flex items-center py-1">
                   <FiShoppingCart />
                 </div>

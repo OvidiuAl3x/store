@@ -18,6 +18,7 @@ import { PiDressFill } from "react-icons/pi";
 import { BsSearch, BsWatch } from "react-icons/bs";
 import { BiSolidTShirt, BiSolidWatch, BiSolidWallet } from "react-icons/bi";
 import { GiConverseShoe, GiClothes } from "react-icons/gi";
+import MiniCart from "./MiniCart";
 
 const style = {
   parent:
@@ -33,7 +34,7 @@ const style = {
     "absolute bg-[#f2f6ff] w-full px-8 md:hidden z-10  border-b-[3px] border-primary  animate-translateX h-full",
 };
 
-const Layout = () => {
+const Layout = ({ cart }) => {
   const {
     parent,
     navBar,
@@ -45,6 +46,7 @@ const Layout = () => {
   } = style;
   const [nav, setNav] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+  const [dropDownCart, setDropDownCart] = useState(false);
 
   const handleClick = () => {
     setNav(!nav);
@@ -104,9 +106,17 @@ const Layout = () => {
             <Link to="/favorite" className="mx-2 hover:scale-110 duration-300">
               <FaRegHeart />
             </Link>
-            <Link className="ml-2 hover:scale-110 duration-300">
+            <Link
+              className="ml-2 hover:scale-110 duration-300"
+              onMouseOver={() => setDropDownCart(true)}
+            >
               <FaOpencart />
             </Link>
+            <MiniCart
+              cart={cart}
+              dropDownCart={dropDownCart}
+              setDropDownCart={setDropDownCart}
+            />
           </div>
         </div>
         <nav>

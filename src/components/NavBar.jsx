@@ -8,17 +8,23 @@ import Favorites from "./Favorites";
 
 const NavBar = () => {
   const [favorite, setFavorite] = useState([]);
+  const [cart, setCart] = useState([]);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout cart={cart} />}>
           <Route index element={<Home />} />
           <Route path="/men-products" element={<MenProducts />} />
           <Route
             path="/men-clothes"
             element={
-              <MenClothes favorite={favorite} setFavorite={setFavorite} />
+              <MenClothes
+                favorite={favorite}
+                setFavorite={setFavorite}
+                setCart={setCart}
+                cart={cart}
+              />
             }
           />
           <Route
