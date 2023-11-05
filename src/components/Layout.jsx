@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { FaOpencart } from "react-icons/fa";
 import { FiPhoneCall, FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import {
@@ -18,6 +17,7 @@ import { PiDressFill } from "react-icons/pi";
 import { BsSearch, BsWatch } from "react-icons/bs";
 import { BiSolidTShirt, BiSolidWatch, BiSolidWallet } from "react-icons/bi";
 import { GiConverseShoe, GiClothes } from "react-icons/gi";
+import { GrCart } from "react-icons/gr";
 import MiniCart from "./MiniCart";
 
 const style = {
@@ -59,6 +59,10 @@ const Layout = ({ cart }) => {
     document.getElementsByTagName("body")[0].style.overflow = "auto";
   }
   //
+
+  const quantityCart = () => {
+    return cart.reduce((sum, { quantity }) => sum + quantity, 0);
+  };
 
   return (
     <>
@@ -107,10 +111,18 @@ const Layout = ({ cart }) => {
               <FaRegHeart />
             </Link>
             <Link
-              className="ml-2 hover:scale-110 duration-300"
+              className="ml-2 hover:scale-110 duration-300 "
               onMouseOver={() => setDropDownCart(true)}
             >
-              <FaOpencart />
+              {quantityCart() >= 1 ? (
+                <div className="absolute ml-2 mt-[-12px] md:ml-3 md:mt-[-7px] bg-primary rounded-full md:w-[22px] md:h-5 flex items-center justify-center animate-translateFav">
+                  <p className=" text-sm text-white px-1 md:p-0">
+                    {quantityCart()}
+                  </p>
+                </div>
+              ) : null}
+
+              <GrCart />
             </Link>
             <MiniCart
               cart={cart}
