@@ -3,7 +3,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 const style = {
-  imgParent: "max-w-[150px] md:max-w-[250px]  md:max-h-[300px] m-auto",
+  imgParent: "max-w-[200px] md:max-w-[250px]  md:max-h-[300px] m-auto",
 };
 
 const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {

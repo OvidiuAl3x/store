@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import Home from "./Home";
 import MenProducts from "./MenProducts";
 import Favorites from "./Favorites";
+import Cart from "./Cart";
 
 const NavBar = () => {
   const [favorite, setFavorite] = useState([]);
@@ -33,6 +34,10 @@ const NavBar = () => {
               <Favorites favorite={favorite} setFavorite={setFavorite} />
             }
           />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} setCart={setCart} />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -111,6 +111,7 @@ const Layout = ({ cart }) => {
               <FaRegHeart />
             </Link>
             <Link
+              to="/cart"
               className="ml-2 hover:scale-110 duration-300 "
               onMouseOver={() => setDropDownCart(true)}
             >

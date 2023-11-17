@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 
 const MiniCart = ({ cart, dropDownCart, setDropDownCart }) => {
   const totalSum = () => {
-    return cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
+    return cart.reduce(
+      (sum, { price, discount, quantity }) =>
+        sum + (price * ((100 - discount) / 100)).toFixed(2) * quantity,
+      0
+    );
   };
 
   const rounded = totalSum().toFixed(2);
@@ -24,11 +28,16 @@ const MiniCart = ({ cart, dropDownCart, setDropDownCart }) => {
             <span></span>
           </div>
           {cart.map((item) => (
-            <div className="flex gap-3 border-b-2 border-primary px-2 items-center">
+            <div
+              className="flex gap-3 border-b-2 border-primary px-2 items-center py-1"
+              key={item.id}
+            >
               <img src={item.image} alt={item.title} className="w-[30px]" />
               <p className="text-secondary">{item.title}</p>
               <p className="text-secondary text-sm">x{item.quantity}</p>
-              <p className="font-bold ml-auto">${item.price}</p>
+              <p className="font-bold ml-auto">
+                ${(item.price * ((100 - item.discount) / 100)).toFixed(2)}
+              </p>
             </div>
           ))}
           {totalSum() === 0 ? (
