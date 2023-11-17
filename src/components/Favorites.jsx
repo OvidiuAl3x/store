@@ -9,7 +9,7 @@ const style = {
   h2: "text-base md:text-lg text-secondary ml-5",
 };
 
-const Favorites = ({ favorite, setFavorite }) => {
+const Favorites = ({ favorite, setFavorite, cart, setCart }) => {
   const { h1, h2 } = style;
 
   const quantityFav = () => {
@@ -18,6 +18,18 @@ const Favorites = ({ favorite, setFavorite }) => {
 
   const removeFav = (productRemove) => {
     setFavorite(favorite.filter((product) => product !== productRemove));
+  };
+
+  const addToCart = (product) => {
+    let newCart = [...cart];
+    let itemInCart = newCart.find((item) => product.id === item.id);
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = { ...product, quantity: 1 };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
   };
 
   return (
@@ -52,7 +64,7 @@ const Favorites = ({ favorite, setFavorite }) => {
                 </div>
                 <div className="flex justify-around gap-2 flex-col md:flex-row  ml-5 md:ml-0 md:justify-normal w-full">
                   <div className="md:mt-2">
-                    <p>{item.title}</p>
+                    <p className="md:max-w-[36em]">{item.title}</p>
                     <div className="flex items-center">
                       <p className="text-lg text-yellow-500">
                         {"★".repeat(item.reviewStar) +
@@ -85,7 +97,7 @@ const Favorites = ({ favorite, setFavorite }) => {
                     )}
                     <div
                       className="flex items-center bg-primary  cursor-pointer w-fit md:w-auto md:m-2 rounded-[4px] border-2 border-black hover:bg-hover"
-                      // onClick={() => addToCart(item)}
+                      onClick={() => addToCart(item)}
                     >
                       <div className="md:rounded-br-2xl md:bg-white py-2 px-2 md:px-2 md:h-full md:flex md:items-center md:py-1">
                         <FiShoppingCart />

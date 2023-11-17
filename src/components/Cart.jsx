@@ -2,11 +2,10 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import imgFav from "../assets/cartEmpty.png";
 import { Link } from "react-router-dom";
-import { LuMinus } from "react-icons/lu";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
 
-const Cart = ({ cart, setCart }) => {
+const Cart = ({ cart, setCart, favorite, setFavorite }) => {
   const quantityCart = () => {
     return cart.reduce((sum, { quantity }) => sum + quantity, 0);
   };
@@ -36,6 +35,18 @@ const Cart = ({ cart, setCart }) => {
   totalSum.forEach((num) => {
     sum += num;
   });
+
+  const addFavorite = (product) => {
+    let newFavorite = [...favorite];
+    let itemFavorite = newFavorite.find((item) => product.id === item.id);
+    if (!itemFavorite) {
+      itemFavorite = { ...product, quantity: 1 };
+      newFavorite.push(itemFavorite);
+    } else {
+      console.log("already exist");
+    }
+    setFavorite(newFavorite);
+  };
 
   return (
     <div className="max-w-[1240px] mx-2 md:mx-auto ">
@@ -113,6 +124,15 @@ const Cart = ({ cart, setCart }) => {
                           <FaPlus className="text-[10px]" />
                         </div>
                       </div>
+                      <p
+                        className="text-sm text-secondary cursor-pointer text-end"
+                        onClick={() => {
+                          removeCart(item);
+                          addFavorite(item);
+                        }}
+                      >
+                        Move to Favorite
+                      </p>
                       <p
                         className="text-sm text-secondary cursor-pointer"
                         onClick={() => removeCart(item)}

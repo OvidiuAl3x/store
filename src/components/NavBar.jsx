@@ -31,12 +31,24 @@ const NavBar = () => {
           <Route
             path="/favorite"
             element={
-              <Favorites favorite={favorite} setFavorite={setFavorite} />
+              <Favorites
+                favorite={favorite}
+                setFavorite={setFavorite}
+                setCart={setCart}
+                cart={cart}
+              />
             }
           />
           <Route
             path="/cart"
-            element={<Cart cart={cart} setCart={setCart} />}
+            element={
+              <Cart
+                cart={cart}
+                setCart={setCart}
+                favorite={favorite}
+                setFavorite={setFavorite}
+              />
+            }
           ></Route>
         </Route>
       </Routes>

@@ -33,7 +33,9 @@ const MiniCart = ({ cart, dropDownCart, setDropDownCart }) => {
               key={item.id}
             >
               <img src={item.image} alt={item.title} className="w-[30px]" />
-              <p className="text-secondary">{item.title}</p>
+              <p className="text-secondary text-[12px] w-[100px]">
+                {item.title.substring(0, 50)}...
+              </p>
               <p className="text-secondary text-sm">x{item.quantity}</p>
               <p className="font-bold ml-auto">
                 ${(item.price * ((100 - item.discount) / 100)).toFixed(2)}
@@ -55,7 +57,10 @@ const MiniCart = ({ cart, dropDownCart, setDropDownCart }) => {
                 )}
                 <p className="ml-2">${rounded}</p>
               </div>
-              <Link className="flex items-center bg-primary  cursor-pointer m-2 rounded-[4px] border-2 border-black hover:bg-hover">
+              <Link
+                to="/cart"
+                className="flex items-center bg-primary  cursor-pointer m-2 rounded-[4px] border-2 border-black hover:bg-hover"
+              >
                 <div className="rounded-br-2xl bg-white px-2 h-full flex items-center py-1 text-base">
                   <MdOutlineKeyboardDoubleArrowRight />
                 </div>

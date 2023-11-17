@@ -44,7 +44,7 @@ const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
     <div className="flex gap-2 md:gap-5 flex-wrap justify-center md:justify-normal">
       {data?.map((item) => (
         <div
-          className="bg-white flex flex-col shadow-lg w-fit justify-between"
+          className="bg-white flex flex-col shadow-lg  w-[200px] lg:w-[290px] justify-between"
           key={item.id}
         >
           {item.discount ? (
@@ -106,7 +106,7 @@ const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
                   <FiShoppingCart />
                 </div>
 
-                <p className="text-sm md:text-base mr-2 text-center w-full">
+                <p className="text-sm md:text-base mr-2 text-center w-full text-white">
                   Add To Cart
                 </p>
               </div>

@@ -3,7 +3,7 @@
         {
             "id": 1,
             "category": "men",
-            "title": "T-Shirt",
+            "title": "Short Sleeve T-Shirt Men Summer Flip Collar Half Sleeve Polo Shirt Trendy Body Shirt Men In White Grey Black Blue Pink",
             "price": 49.99,
             "discount": 25,
             "description": "Lorem",
@@ -108,7 +108,7 @@
         {
             "id": 9,
             "category": "men",
-            "title": "Hoodie",
+            "title": "Hooded Hoodie 2023 New Spring And Fall Japanese Ins Fashion Brand Fake Two Casual Daily Retro Hip Hop High Street Top",
             "price": 149.99,
             "discount": 10,
             "description": "Lorem",
@@ -122,7 +122,7 @@
         {
             "id": 10,
             "category": "men",
-            "title": "Hoodie",
+            "title": "Hooded Hoodie 2023 New Spring And Fall Japanese Ins Fashion Brand Fake Two Casual Daily Retro Hip Hop High Street Top",
             "price": 249.99,
             "discount": 5,
             "description": "Lorem",
@@ -136,7 +136,21 @@
         {
             "id": 11,
             "category": "men",
-            "title": "Shorts",
+            "title": "Men's Casual Shorts Summer Mesh Running Fitness Sport Short Pants Quick Dry Male Loose Basketball Training Pants ",
+            "price": 39.99,
+            "discount": 15,
+            "description": "Lorem",
+            "type": "shorts",
+            "type2": "clothes",
+            "size": "XL",
+            "review": 30,
+            "reviewStar": 4,
+            "image": "/db/men/pantaloni-scurti.jpg"
+        },
+        {
+            "id": 12,
+            "category": "men",
+            "title": "Men's Casual Shorts Summer Mesh Running Fitness Sport Short Pants Quick Dry Male Loose Basketball Training Pants ",
             "price": 39.99,
             "discount": 15,
             "description": "Lorem",
