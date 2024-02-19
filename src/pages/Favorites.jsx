@@ -3,33 +3,30 @@ import { FiShoppingCart, FiTrash2 } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import imgFav from "../assets/favorite.png";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, removeFavorite } from "../redux/actions/productActions";
 
 const style = {
   h1: "text-xl md:text-3xl",
   h2: "text-base md:text-lg text-secondary ml-5",
 };
 
-const Favorites = ({ favorite, setFavorite, cart, setCart }) => {
+const Favorites = () => {
   const { h1, h2 } = style;
 
+  const dispatch = useDispatch();
+  const favoriteItems = useSelector((state) => state.favorites.favorite);
+
   const quantityFav = () => {
-    return favorite.reduce((sum, { quantity }) => sum + quantity, 0);
+    return favoriteItems.reduce((sum, { quantity }) => sum + quantity, 0);
   };
 
-  const removeFav = (productRemove) => {
-    setFavorite(favorite.filter((product) => product !== productRemove));
+  const handleRemoveFavorite = (productId) => {
+    dispatch(removeFavorite({ productId }));
   };
 
-  const addToCart = (product) => {
-    let newCart = [...cart];
-    let itemInCart = newCart.find((item) => product.id === item.id);
-    if (itemInCart) {
-      itemInCart.quantity++;
-    } else {
-      itemInCart = { ...product, quantity: 1 };
-      newCart.push(itemInCart);
-    }
-    setCart(newCart);
+  const handleAddCart = (product) => {
+    dispatch(addCart({ product }));
   };
 
   return (
@@ -46,14 +43,14 @@ const Favorites = ({ favorite, setFavorite, cart, setCart }) => {
         <hr className="mb-5" />
         {quantityFav() >= 1 ? (
           <>
-            {favorite.map((item) => (
+            {favoriteItems.map((item) => (
               <div
                 className="mt-2 flex max-h-[300px] border-b-2 border-primary "
                 key={item.id}
               >
                 <AiOutlineClose
                   className="absolute right-8 text-secondary cursor-pointer text-lg md:hidden"
-                  onClick={() => removeFav(item)}
+                  onClick={() => handleRemoveFavorite(item.id)}
                 />
                 <div className="flex gap-5">
                   <img
@@ -97,7 +94,7 @@ const Favorites = ({ favorite, setFavorite, cart, setCart }) => {
                     )}
                     <div
                       className="flex items-center bg-primary  cursor-pointer w-fit md:w-auto md:m-2 rounded-[4px] border-2 border-black hover:bg-hover"
-                      onClick={() => addToCart(item)}
+                      onClick={() => handleAddCart(item)}
                     >
                       <div className="md:rounded-br-2xl md:bg-white py-2 px-2 md:px-2 md:h-full md:flex md:items-center md:py-1">
                         <FiShoppingCart />
@@ -109,7 +106,7 @@ const Favorites = ({ favorite, setFavorite, cart, setCart }) => {
                     </div>
                     <div
                       className="hidden md:flex items-center text-sm text-secondary cursor-pointer justify-end mr-2"
-                      onClick={() => removeFav(item)}
+                      onClick={() => handleRemoveFavorite(item.id)}
                     >
                       <FiTrash2 />
                       <p className="ml-1">Remove</p>

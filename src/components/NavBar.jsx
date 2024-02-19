@@ -2,54 +2,21 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MenClothes from "./MenProducts/MenClothes";
 import Layout from "./Layout";
-import Home from "./Home";
-import MenProducts from "./MenProducts";
-import Favorites from "./Favorites";
-import Cart from "./Cart";
+import Home from "../pages/Home";
+import MenProducts from "../pages/MenProducts";
+import Favorites from "../pages/Favorites";
+import Cart from "../pages/Cart";
 
 const NavBar = () => {
-  const [favorite, setFavorite] = useState([]);
-  const [cart, setCart] = useState([]);
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout cart={cart} />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/men-products" element={<MenProducts />} />
-          <Route
-            path="/men-clothes"
-            element={
-              <MenClothes
-                favorite={favorite}
-                setFavorite={setFavorite}
-                setCart={setCart}
-                cart={cart}
-              />
-            }
-          />
-          <Route
-            path="/favorite"
-            element={
-              <Favorites
-                favorite={favorite}
-                setFavorite={setFavorite}
-                setCart={setCart}
-                cart={cart}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cart={cart}
-                setCart={setCart}
-                favorite={favorite}
-                setFavorite={setFavorite}
-              />
-            }
-          ></Route>
+          <Route path="/men-clothes" element={<MenClothes />} />
+          <Route path="/favorite" element={<Favorites />} />
+          <Route path="/cart" element={<Cart />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

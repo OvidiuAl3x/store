@@ -4,28 +4,35 @@ import imgFav from "../assets/cartEmpty.png";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
+import {
+  addCartQuantity,
+  addFavorite,
+  removeCart,
+  removeCartQuantity,
+} from "../redux/actions/productActions";
+import { useDispatch, useSelector } from "react-redux";
 
-const Cart = ({ cart, setCart, favorite, setFavorite }) => {
+const Cart = () => {
+  const dispatch = useDispatch();
+
+  const cartSelector = useSelector((state) => state.cart.cart);
   const quantityCart = () => {
-    return cart.reduce((sum, { quantity }) => sum + quantity, 0);
+    return cartSelector.reduce((sum, { quantity }) => sum + quantity, 0);
   };
 
-  const addCartQunatity = (product) => {
-    const newCart = [...cart];
-    newCart.find((item) => item.id === product.id).quantity++;
-    setCart(newCart);
-  };
-  const removeCartQuantity = (product) => {
-    const newCart = [...cart];
-    newCart.find((item) => item.id === product.id).quantity--;
-    setCart(newCart);
+  const handleAddCartQuantity = (product) => {
+    dispatch(addCartQuantity(product));
   };
 
-  const removeCart = (productRemove) => {
-    setCart(cart.filter((product) => product !== productRemove));
+  const handleRemoveCartQuantity = (product) => {
+    dispatch(removeCartQuantity(product));
   };
 
-  const totalSum = cart.map(
+  const handleRemoveCart = (productRemove) => {
+    dispatch(removeCart(productRemove));
+  };
+
+  const totalSum = cartSelector.map(
     (item) =>
       (item.price * ((100 - item.discount) / 100)).toFixed(2) * item.quantity
   );
@@ -36,16 +43,8 @@ const Cart = ({ cart, setCart, favorite, setFavorite }) => {
     sum += num;
   });
 
-  const addFavorite = (product) => {
-    let newFavorite = [...favorite];
-    let itemFavorite = newFavorite.find((item) => product.id === item.id);
-    if (!itemFavorite) {
-      itemFavorite = { ...product, quantity: 1 };
-      newFavorite.push(itemFavorite);
-    } else {
-      console.log("already exist");
-    }
-    setFavorite(newFavorite);
+  const handleAddFavorite = (product) => {
+    dispatch(addFavorite({ product }));
   };
 
   return (
@@ -55,14 +54,14 @@ const Cart = ({ cart, setCart, favorite, setFavorite }) => {
         {quantityCart() >= 1 ? (
           <div className="grid md:grid-cols-[6fr,2fr] lg:grid-cols-[7fr,2fr] xl:grid-cols-[6fr,2fr] xl:gap-10">
             <div className="bg-white rounded-md shadow-lg">
-              {cart.map((item) => (
+              {cartSelector.map((item) => (
                 <div
                   className="mt-2 flex max-h-[300px] border-b-2 border-primary px-2"
                   key={item.id}
                 >
                   <AiOutlineClose
                     className="absolute right-8 text-secondary cursor-pointer text-lg md:hidden"
-                    onClick={() => removeCart(item)}
+                    onClick={() => handleRemoveCart(item)}
                   />
                   <div className="flex gap-5">
                     <img
@@ -110,8 +109,8 @@ const Cart = ({ cart, setCart, favorite, setFavorite }) => {
                           className="border-2 border-primary p-1 rounded-[50%] cursor-pointer"
                           onClick={() =>
                             item.quantity > 1
-                              ? removeCartQuantity(item)
-                              : removeCart(item)
+                              ? handleRemoveCartQuantity(item)
+                              : handleRemoveCart(item)
                           }
                         >
                           <FaMinus className="text-[10px]" />
@@ -119,7 +118,7 @@ const Cart = ({ cart, setCart, favorite, setFavorite }) => {
                         <p className="text-lg m-2">{item.quantity}</p>
                         <div
                           className="border-2 border-primary p-1  rounded-[50%] cursor-pointer"
-                          onClick={() => addCartQunatity(item)}
+                          onClick={() => handleAddCartQuantity(item)}
                         >
                           <FaPlus className="text-[10px]" />
                         </div>
@@ -127,15 +126,15 @@ const Cart = ({ cart, setCart, favorite, setFavorite }) => {
                       <p
                         className="text-sm text-secondary cursor-pointer text-end"
                         onClick={() => {
-                          removeCart(item);
-                          addFavorite(item);
+                          handleRemoveCart(item);
+                          handleAddFavorite(item);
                         }}
                       >
                         Move to Favorite
                       </p>
                       <p
                         className="text-sm text-secondary cursor-pointer"
-                        onClick={() => removeCart(item)}
+                        onClick={() => handleRemoveCart(item)}
                       >
                         Remove
                       </p>

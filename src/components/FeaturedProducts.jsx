@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { GetData } from "../service/ApiRequest";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "../redux/actions/productActions";
 
 const style = {
   button:
@@ -11,20 +12,29 @@ const style = {
 
 const FeaturedProducts = () => {
   const { button, h1, imgParent } = style;
-  const [data, setData] = useState();
+
+  const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
+
+  const GetData = async (price, asc) => {
+    const response = await fetch(
+      `http://localhost:3000/products?_sort=${price}&_order=${asc}`
+    );
+    if (response.ok) {
+      return dispatch(setProducts(await response.json()));
+    }
+    throw new Error("something went wrong");
+  };
 
   useEffect(() => {
-    (async () => {
-      const data = await GetData();
-      setData(data);
-    })();
+    GetData();
   }, []);
 
   return (
     <div className="max-w-[1240px] m-4 lg:mx-auto mt-[8em]">
       <h1 className={h1}>Featured Products</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        {data?.slice(0, 8).map((item) => (
+        {products?.slice(0, 8).map((item) => (
           <div className="bg-white flex flex-col py-5" key={item.id}>
             {item.discount ? (
               <span className="absolute ml-[10px] mt-[-10px] bg-primary px-[6px] text-white">

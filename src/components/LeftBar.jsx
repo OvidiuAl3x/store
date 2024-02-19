@@ -8,7 +8,6 @@ const ListItem = ({ item, id, filterHandler }) => {
     <div className={`p-1 ml-2`} key={id}>
       <label
         htmlFor={item}
-        for={item}
         className="cursor-pointer flex items-center gap-1 w-fit"
       >
         <input

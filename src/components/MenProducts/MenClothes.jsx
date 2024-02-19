@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { GetDataMenClothes } from "../../service/ApiRequest";
 import LeftBar from "../LeftBar";
 import MenProductsCards from "./MenClothesCard";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductsMen } from "../../redux/actions/productActions";
 
 const style = {
   button:
@@ -9,56 +10,41 @@ const style = {
   h1: "text-2xl md:text-4xl",
 };
 
-const MenClothes = ({ favorite, setFavorite, cart, setCart }) => {
+const MenClothes = () => {
   const { h1 } = style;
-  const [data, setData] = useState();
   const [filterTags, setFilterTags] = useState([]);
   const [filterMobile, setFilterMobile] = useState(false);
+  const dispatch = useDispatch();
+
+  const productsMen = useSelector((state) => state.menProducts.products);
+
+  const getDataMenClothes = async (price, asc) => {
+    const response = await fetch(
+      `http://localhost:3000/products?category=men&type2=clothes&_sort=${price}&_order=${asc}`
+    );
+    if (response.ok) {
+      return dispatch(setProductsMen(await response.json()));
+    }
+    throw new Error("something went wrong");
+  };
 
   useEffect(() => {
-    (async () => {
-      const data = await GetDataMenClothes();
-      setData(data);
-    })();
+    getDataMenClothes();
   }, []);
 
-  const filteredData = data?.filter(
+  const filteredData = productsMen?.filter(
     (item) =>
       filterTags.length === 0 ||
       filterTags.includes(item.type.toLowerCase()) ||
       filterTags.includes(item.size)
   );
 
-  const handleSort = async (e) => {
-    let value = e.target.value;
-    let asc;
-    if (value === "priceLow") {
-      const data = await GetDataMenClothes((value = "price"), (asc = "asc"));
-      setData(data);
-    } else if (value === "priceHigh") {
-      const data = await GetDataMenClothes((value = "price"), (asc = "desc"));
-      setData(data);
-    } else if (value === "discount") {
-      const data = await GetDataMenClothes(
-        (value = "discount"),
-        (asc = "desc")
-      );
-      const newItem = data?.filter((item) => {
-        return item.discount;
-      });
-      setData(newItem);
-    } else {
-      const data = await GetDataMenClothes(value);
-      setData(data);
-    }
-  };
-
   return (
     <div className="grid md:grid-cols-[2fr,6fr] lg:grid-cols-[2fr,7fr] xl:grid-cols-[1fr,5fr] xl:gap-10">
       <LeftBar
         filterTags={filterTags}
         setFilterTags={setFilterTags}
-        data={data}
+        data={productsMen}
         filterMobile={filterMobile}
         setFilterMobile={setFilterMobile}
       />
@@ -76,8 +62,8 @@ const MenClothes = ({ favorite, setFavorite, cart, setCart }) => {
               <p>Filters</p>
             </div>
             <div className="border-2 border-primary rounded-full px-2 py-1 text-sm w-fit">
-              <label for="products">Sort by: </label>
-              <select name="products" onChange={handleSort}>
+              <label htmlFor="products">Sort by: </label>
+              <select name="products">
                 <option value="featured">Featured</option>
                 <option value="priceLow">Price: Low to High</option>
                 <option value="priceHigh">Price: High to low</option>
@@ -87,13 +73,7 @@ const MenClothes = ({ favorite, setFavorite, cart, setCart }) => {
           </div>
         </div>
 
-        <MenProductsCards
-          data={filteredData}
-          favorite={favorite}
-          setFavorite={setFavorite}
-          setCart={setCart}
-          cart={cart}
-        />
+        <MenProductsCards data={filteredData} />
       </div>
     </div>
   );

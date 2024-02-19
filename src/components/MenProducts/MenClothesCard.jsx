@@ -1,44 +1,38 @@
 import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCart,
+  addFavorite,
+  removeFavorite,
+} from "../../redux/actions/productActions";
 
 const style = {
   imgParent: "max-w-[200px] md:max-w-[250px]  md:max-h-[300px] m-auto",
 };
 
-const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
+const MenClothesCard = ({ data }) => {
   const { imgParent } = style;
 
-  const addToCart = (product) => {
-    let newCart = [...cart];
-    let itemInCart = newCart.find((item) => product.id === item.id);
-    if (itemInCart) {
-      itemInCart.quantity++;
-    } else {
-      itemInCart = { ...product, quantity: 1 };
-      newCart.push(itemInCart);
-    }
-    setCart(newCart);
+  const dispatch = useDispatch();
+
+  const favoriteState = useSelector((state) => state.favorites.favorite);
+
+  const handleAddFavorite = (product) => {
+    dispatch(addFavorite({ product }));
   };
 
-  const addFavorite = (product) => {
-    let newFavorite = [...favorite];
-    let itemFavorite = newFavorite.find((item) => product.id === item.id);
-    if (!itemFavorite) {
-      itemFavorite = { ...product, quantity: 1 };
-      newFavorite.push(itemFavorite);
-    } else {
-      console.log("already exist");
-    }
-    setFavorite(newFavorite);
+  const handleAddCart = (product) => {
+    dispatch(addCart({ product }));
   };
 
-  const removeFavorite = (product) => {
-    const remove = favorite.filter((element) => element.id !== product);
-    setFavorite(remove);
+  const handleRemoveFavorite = (productId) => {
+    dispatch(removeFavorite({ productId }));
   };
 
-  const checkFavorite = (item) => favorite?.find((item2) => item2.id === item);
+  const checkFavorite = (item) =>
+    favoriteState?.find((item2) => item2.id === item);
 
   return (
     <div className="flex gap-2 md:gap-5 flex-wrap justify-center md:justify-normal">
@@ -56,12 +50,12 @@ const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
             {!checkFavorite(item.id) ? (
               <FaRegHeart
                 className="absolute mt-2 ml-[-30px] text-lg cursor-pointer"
-                onClick={() => addFavorite(item)}
+                onClick={() => handleAddFavorite(item)}
               />
             ) : (
               <FaHeart
                 className="absolute mt-2 ml-[-30px] text-lg cursor-pointer text-red-600 animate-translateFav"
-                onClick={() => removeFavorite(item.id)}
+                onClick={() => handleRemoveFavorite(item.id)}
               />
             )}
           </div>
@@ -100,7 +94,7 @@ const MenClothesCard = ({ data, favorite, setFavorite, cart, setCart }) => {
               )}
               <div
                 className="flex items-center bg-primary  cursor-pointer m-2 rounded-[4px] border-2 border-black hover:bg-hover"
-                onClick={() => addToCart(item)}
+                onClick={() => handleAddCart(item)}
               >
                 <div className="rounded-br-2xl bg-white px-2 h-full flex items-center py-1">
                   <FiShoppingCart />
