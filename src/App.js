@@ -1,10 +1,12 @@
 import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
+import RouteLinks from "./components/RouteLinks";
+import Navbar from "./pages/Navbar";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <Navbar />
+      <RouteLinks />
       <Footer />
     </>
   );

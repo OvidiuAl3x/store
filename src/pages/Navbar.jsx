@@ -18,7 +18,7 @@ import { BsSearch, BsWatch } from "react-icons/bs";
 import { BiSolidTShirt, BiSolidWatch, BiSolidWallet } from "react-icons/bi";
 import { GiConverseShoe, GiClothes } from "react-icons/gi";
 import { GrCart } from "react-icons/gr";
-import MiniCart from "./MiniCart";
+import MiniCart from "../components/MiniCart";
 import { useSelector } from "react-redux";
 
 const style = {
@@ -35,7 +35,7 @@ const style = {
     "absolute bg-[#f2f6ff] w-full px-8 md:hidden z-10  border-b-[3px] border-primary  animate-translateX h-full",
 };
 
-const Layout = () => {
+const Navbar = () => {
   const {
     parent,
     navBar,
@@ -240,4 +240,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default Navbar;
